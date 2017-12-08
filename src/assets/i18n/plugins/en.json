@@ -1,0 +1,7 @@
+{
+  "plugins": {
+    "table": {
+      "search_table": "Search table"
+    }
+  }
+}

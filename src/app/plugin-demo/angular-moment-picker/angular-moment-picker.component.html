@@ -1,0 +1,28 @@
+<div class="form-group">
+  <label>Using a
+    <code>&lt;DIV&gt;</code> element</label>
+  <div class="form-control" moment-picker="ctrl.div.stringDate" format="YYYY-MM-DD" locale="en">
+    <a class="pull-right" ng-if="ctrl.div.stringDate" ng-click="ctrl.div.stringDate = ''">
+      &times;
+    </a>
+    <span ng-class="{'text-muted': !ctrl.div.stringDate}">
+      {{ ctrl.div.stringDate || 'Select a date...' }}
+    </span>
+  </div>
+  <div class="help-block small">
+    <b>Note:</b> since this is not an input field, users cannot type custom text.
+  </div>
+</div>
+
+<hr>
+
+<div class="form-group">
+  <label>Using a
+    <code>&lt;INPUT&gt;</code> element</label>
+  <input class="form-control" placeholder="Select a date..." moment-picker="ctrl.input.stringDate" locale="en" format="YYYY-MM-DD"
+    ng-model="ctrl.input.momentDate" ng-model-options="{ updateOn: 'blur' }">
+  <div class="help-block small">
+    <b>Note:</b>
+    <code>ng-model</code> is required for inputs, even if you never use it.
+  </div>
+</div>

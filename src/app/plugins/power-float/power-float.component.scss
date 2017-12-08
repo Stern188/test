@@ -1,0 +1,9 @@
+.panel-group .panel + .panel {
+    margin-top: 1px;
+}
+.panel-default > .panel-heading {
+    border-bottom: 1px solid #ddd;
+}
+.panel {
+    border: none;
+}

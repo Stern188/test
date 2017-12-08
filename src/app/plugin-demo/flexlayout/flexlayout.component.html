@@ -1,0 +1,67 @@
+<md-card >
+  <md-card-title>Flex布局</md-card-title>
+  <md-card-subtitle>布局功能基于angular/flex-out组件。</md-card-subtitle>
+  <md-card-content>
+    <h3>布局API</h3>
+    <p>
+      flex布局通过HTML元素的属性来控制布局方式。支持行列方式的布局方式，支持响应式布局.
+    </p>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>属性</th>
+        <th>赋值</th>
+        <th>说明</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>fxLayout</td>
+        <td>row|column|row-reverse|column-reverse</td>
+        <td>布局属性决定html元素内所有子元素的布局方式</td>
+      </tr>
+      <tr>
+        <td>fxLayoutAlign</td>
+      <td>&lt;main-axis> &lt;cross-axis><br/>
+        main-aixs: start |center | end | space-around | space-between<br/>
+        cross-axis: start | center | end | stretch
+      </td><td>对齐方式</td>
+      </tr>
+      <tr>
+        <td>fxLayoutGap</td><td>	% | px | vw | vh  </td>
+      <td>布局元素间的间距</td></tr>
+      </tbody>
+    </table>
+   <p>子元素通过HTML属性调整布局</p>
+
+    <h3>行式布局</h3>
+    <p>行式布局内所有元素在同一行内排列.</p>
+
+    <md-tab-group>
+      <md-tab label="效果">
+        <div fxLayout="row">
+          <div fxFlex="30" style="background: blue;"> DIV 1 </div>
+        <div fxFlex="70" style="background: darkcyan;"> DIV 2 </div>
+        </div>
+      </md-tab>
+      <md-tab label="代码">
+        <pre><code appPcode class="language-markup"></code></pre>
+      </md-tab>
+    </md-tab-group>
+  </md-card-content>
+  <md-card-footer>
+  </md-card-footer>
+</md-card>
+
+<md-card>
+  <md-card-title>Input组件示例代码</md-card-title>
+  <md-card-subtitle>展示基本的组件功能</md-card-subtitle>
+  <md-card-content>
+    <pre>
+  <code appPcode class="language-markup">&lt;md-input-container&gt;
+      &lt;input mdInput placeholder=&quot;City&quot;&gt;
+    &lt;/md-input-container&gt; </code>
+    </pre>
+  </md-card-content>
+
+</md-card>

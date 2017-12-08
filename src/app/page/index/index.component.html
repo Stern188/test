@@ -1,0 +1,106 @@
+<form>
+    自测项目：
+    <select2 [data]="projects" id="projectControl" name="projectControl" [(ngModel)]="proVal" (valueChanged)='chgPro()' [width]="'10%'"></select2>
+    自测项目版本号：
+    <select2 [data]="versions" id="versionControl" name="versionControl" [(ngModel)]="verVal" (valueChanged)='chgVer()' [width]="'10%'"></select2>
+    中，未自测人员：{{members}}
+</form>
+<input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder="{{'plugins.table.search_table'|translate}}"
+    (keyup)='commonComponent.updateFilter($event,temp,this)' />
+<a href="javascript:void(0)" class="btn btn-raised btn-xs" (click)="open(content)">
+    填写自测信息
+</a>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form #indexForm="ngForm" class="form-horizontal" (ngSubmit)="add()">
+            <div class="form-group">
+                <label for="projectFormControl" class="col-sm-3 control-label">自测项目</label>
+                <div class="col-sm-9">
+                    <select2 [data]="projects" id="project" required name="project" [(ngModel)]="indexMod.project" #project="ngModel"></select2>
+                    <div *ngIf="project.invalid && (project.dirty || project.touched)" class="alert alert-danger">
+                        <div *ngIf="project.errors.required">
+                            自测项目 is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="versionFormControl" class="col-sm-3 control-label">自测项目版本号</label>
+                <div class="col-sm-9">
+                    <select2 [data]="versions" id="version" required name="version" [(ngModel)]="indexMod.version" #version="ngModel"></select2>
+                    <div *ngIf="version.invalid && (version.dirty || version.touched)" class="alert alert-danger">
+                        <div *ngIf="version.errors.required">
+                            自测项目版本号 is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="versionFormControl" class="col-sm-3 control-label">自测状态</label>
+                <div class="col-sm-9">
+                    <select2 [data]="status" id="state" required name="state" [(ngModel)]="indexMod.state" #state="ngModel"></select2>
+                    <div *ngIf="state.invalid && (state.dirty || state.touched)" class="alert alert-danger">
+                        <div *ngIf="state.errors.required">
+                            自测状态 is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="descriptionFormControl" class="col-sm-3 control-label">描述</label>
+                <div class="col-sm-9">
+                    <textarea mdInput placeholder="描述" rows="3" cols="44" id="descriptionFormControl" maxlength="500" [(ngModel)]="indexMod.description"
+                        #description="ngModel" name="descriptionFormControl"></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" [disabled]="!indexForm.form.valid" (click)="add()">保存</button>
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">取消</button>
+    </div>
+</ng-template>
+
+<ngx-datatable #table class="material" [headerHeight]="50" [limit]="10" [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'"
+    [rows]="rows">
+    <ngx-datatable-column name="name">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            姓名
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="state">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            自测状态
+        </ng-template>
+        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value">
+            <span *ngIf="value==='all'">通过</span>
+            <span *ngIf="value==='part'">部分通过</span>
+            <span *ngIf="value==='none'">未通过</span>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="projectname">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            自测项目
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="version">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            自测项目版本号
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="description">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            描述
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="date" style="width:500px;">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            时间
+        </ng-template>
+    </ngx-datatable-column>
+</ngx-datatable>

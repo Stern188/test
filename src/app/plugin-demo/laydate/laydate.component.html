@@ -1,0 +1,201 @@
+<div class="container">
+    <h2>基本用法</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay0'></laydate>
+        </div>
+    </div>
+
+    <h2>类：className</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay1' className='laydate'></laydate>
+        </div>
+    </div>
+
+    <h2>控件类型:type</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay2' type='year'></laydate>
+            <laydate layid='lay3' type='month'></laydate>
+            <laydate layid='lay4' type='time'></laydate>
+            <laydate layid='lay5' type='date'></laydate>
+            <laydate layid='lay6' type='datetime'></laydate>
+        </div>
+    </div>
+
+    <h2>范围选择:range</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay7' type='year' range='~'></laydate>
+            <laydate layid='lay8' type='month' range='~'></laydate>
+            <laydate layid='lay9' type='time' range='~'></laydate>
+            <laydate layid='lay10' range='~'></laydate>
+            <laydate layid='lay11' type='datetime' range='~'></laydate>
+        </div>
+    </div>
+
+    <h2>自定义格式:format</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay12' format='yyyy年MM月dd日'></laydate>
+            <laydate layid='lay13' format='dd/MM/yyyy'></laydate>
+            <laydate layid='lay14' format='yyyyMM'></laydate>
+            <laydate layid='lay15' format='H点M分' type='time'></laydate>
+            <laydate layid='lay16' type='month' range='→' format='yyyy-MM'></laydate>
+            <laydate layid='lay17' type='datetime' range='到' format='yyyy年M月d日H时m分s秒'></laydate>
+        </div>
+    </div>
+
+    <h2>公历节日:calendar</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay18' [calendar]='isCalendar'></laydate>
+        </div>
+    </div>
+
+    <h2>自定义重要日子:mark</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay19' [mark]='mark'></laydate>
+        </div>
+    </div>
+
+    <h2>初始值:layValue</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay20' defValue='2018-08-18'></laydate>
+            <laydate layid='lay21' [defValue]="defvalue"></laydate>
+        </div>
+    </div>
+
+    <h2>最大/小日期:min/max</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay22' min='2017-1-1' max='2017-12-31'></laydate>
+            <laydate layid='lay23' min=-7 max=7></laydate>
+            <laydate layid='lay24' min='2017-8-11 12:30:00 ' max='2017-8-18 18:30:00'></laydate>
+            <laydate layid='lay25' min='09:30:00' max='17:30:00'></laydate>
+        </div>
+    </div>
+
+    <!-- <h2>自定义事件:trigger</h2>
+        <hr>
+        <div class="panel panel-default">
+            <div class="panel-footer">
+               <laydate layid='lay26 ' trigger='mousedown' eventElem='#test25-1'></laydate>
+               <button id="test25-1" value="dafdsfa">dffffff</button>
+            </div>
+        </div> -->
+
+    <h2>选中后的回调:done</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay27' [done]='done'></laydate>
+        </div>
+    </div>
+
+    <h2>日期切换的回调:change</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay28' [change]='change'></laydate>
+        </div>
+    </div>
+
+    <h2>不出现底部栏:showBottom</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay29' [showBottom]='isShowBottom'></laydate>
+        </div>
+    </div>
+
+    <h2>工具按钮:btns</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay30' [btns]='btns'></laydate>
+        </div>
+    </div>
+
+    <h2>默认显示:show</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay31' [show]='isShow'></laydate>
+        </div>
+    </div>
+
+    <h2>外部事件调用:closeStop</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay32' show=true closeStop='#closeStop'></laydate>
+        </div>
+    </div>
+
+    <h2>定位方式:position</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay33' position='static'></laydate>
+            <laydate layid='lay34' position='fixed'></laydate>
+            <laydate layid='lay35' position='abolute'></laydate>
+        </div>
+    </div>
+
+    <h2>层叠顺序:zIndex</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay36' zIndex='99999999'></laydate>
+        </div>
+    </div>
+
+    <h2>主题:theme</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay37' theme='default'></laydate>
+            <laydate layid='lay38' theme='molv'></laydate>
+            <laydate layid='lay39' theme='#393D49'></laydate>
+            <laydate layid='lay40' theme='grid'></laydate>
+        </div>
+    </div>
+
+    <h2>控件初始打开的回调:ready</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay41' [ready]='ready'></laydate>
+        </div>
+    </div>
+
+    <h2>弹出控件提示:hint</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <laydate layid='lay42' [change]='hint'></laydate>
+        </div>
+    </div>
+
+    <h2>获取指定年月的最后一天:laydate.getEndDate(month, year)</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <button (click)='getEndDate(0)'>laydate.getEndDate(10)</button>
+            <button (click)='getEndDate(1)'>laydate.getEndDate(2, 2080)</button>
+        </div>
+    </div>
+</div>
