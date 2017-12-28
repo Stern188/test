@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CollapseHeadComponent } from './collapse-head.component';
+import { JqueryTawdateComponent } from './jquery-tawdate.component';
 
-describe('CollapseHeadComponent', () => {
-  let component: CollapseHeadComponent;
-  let fixture: ComponentFixture<CollapseHeadComponent>;
+describe('JqueryTawdateComponent', () => {
+  let component: JqueryTawdateComponent;
+  let fixture: ComponentFixture<JqueryTawdateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CollapseHeadComponent ]
+      declarations: [ JqueryTawdateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CollapseHeadComponent);
+    fixture = TestBed.createComponent(JqueryTawdateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

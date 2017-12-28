@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CollapseComponent } from './collapse-group.component';
+import { FormComponent } from './form.component';
 
-describe('CollapseComponent', () => {
-  let component: CollapseComponent;
-  let fixture: ComponentFixture<CollapseComponent>;
+describe('FormComponent', () => {
+  let component: FormComponent;
+  let fixture: ComponentFixture<FormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CollapseComponent ]
+      declarations: [ FormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CollapseComponent);
+    fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

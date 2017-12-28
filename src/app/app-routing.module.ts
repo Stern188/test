@@ -21,6 +21,10 @@ import { ProgressSpinnerComponent } from './plugin-demo/progress-spinner/progres
 import { TabComponent } from './plugin-demo/tab/tab.component';
 import { ToasterComponent } from './plugin-demo/toaster/toaster.component';
 import { TutorialComponent } from './plugin-demo/tutorial/tutorial.component';
+import { FormComponent } from './plugin-demo/form/form.component';
+import { DateGroupComponent } from './plugin-demo/date-group/date-group.component';
+import { ModalComponent } from './plugin-demo/modal/modal.component';
+import { DycFormComponent } from './plugin-demo/dycform/dycform.component';
 /*插件结束 */
 const routes: Routes = [
   { path: '', redirectTo: '/index/index', canActivate: [AuthGuard], pathMatch: 'full' },
@@ -35,6 +39,7 @@ const routes: Routes = [
   { path: 'button', component: ButtonComponent },
   { path: 'checkbox', component: CheckboxComponent },
   { path: 'expansion-panel', component: ExpansionPanelComponent },
+  { path: 'form', component: FormComponent },
   { path: 'select2', component: Select2Component },
   { path: 'flexlayout', component: FlexlayoutComponent },
   { path: 'float', component: FloatComponent },
@@ -45,6 +50,9 @@ const routes: Routes = [
   { path: 'tab', component: TabComponent },
   { path: 'toaster', component: ToasterComponent },
   { path: 'tutorial', component: TutorialComponent },
+  { path: 'date-group', component: DateGroupComponent },
+  { path: 'modal', component: ModalComponent },
+  { path: 'dynamic-form', component: DycFormComponent },
   /*插件结束 */
 ];
 @NgModule({

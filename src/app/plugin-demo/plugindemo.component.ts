@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'plugindemo',
+  selector: 'app-plugindemo',
   templateUrl: './plugindemo.component.html',
   styleUrls: ['./plugindemo.component.css']
 })

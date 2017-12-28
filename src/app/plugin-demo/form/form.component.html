@@ -1,0 +1,58 @@
+<div>
+  <form novalidate (ngSubmit)="saveUser()" [formGroup]="user">
+    <md-input-container>
+      <input mdInput placeholder="用户名" type="text" formControlName="username">
+      <md-error *ngIf="user.get('username').invalid">
+        用户名是必填的(最少5个字符，最大20个字符)
+      </md-error>
+    </md-input-container>
+
+    <select2 [data]="sexData" placeholder="性别" [options]="options" formControlName="sex" [(ngModel)]="value"></select2>
+    <!-- <md-error *ngIf="user.get('sex').invalid">
+      性别不能为空
+    </md-error> -->
+
+    <laydate layid='birthday' placeholder="生日"></laydate>
+    <!-- <md-error *ngIf="user.get('birthday').invalid">
+        生日不能为空
+      </md-error> -->
+
+    <md-input-container>
+      <input mdInput placeholder="邮箱" type="email" formControlName="email">
+      <md-error *ngIf="user.get('email').invalid">
+        电子邮件要求和格式应该是 ****@****.com/cn。
+      </md-error>
+    </md-input-container>
+
+    <md-input-container>
+      <input mdInput placeholder="密码" [type]="hide1 ? 'password' : 'text'" formControlName="password" validateEqual="confirmPassword"
+        reverse="true">
+      <md-icon mdSuffix (click)="hide1 = !hide1" style="cursor: pointer">{{hide1 ? 'visibility' : 'visibility_off'}}</md-icon>
+      <md-error *ngIf="user.get('password').invalid&& user.get('password').touched">
+        6-20位的数字字母下滑线。
+      </md-error>
+    </md-input-container>
+
+    <md-input-container>
+      <input mdInput placeholder="密码确认" [type]="hide2 ? 'password' : 'text'" formControlName="confirmPassword" validateEqual="password">
+      <md-icon mdSuffix (click)="hide2 = !hide2" style="cursor: pointer">{{hide2 ? 'visibility' : 'visibility_off'}}</md-icon>
+      <md-error *ngIf="user.hasError('pattern','confirmPassword')&& 
+          user.get('confirmPassword').touched">
+        6-20位的数字字母下滑线。
+      </md-error>
+      <md-error *ngIf="!user.hasError('pattern','confirmPassword') && user.get('confirmPassword').invalid&& 
+          user.get('confirmPassword').touched">
+        密码不一致
+      </md-error>
+    </md-input-container>
+
+    <md-input-container>
+      <textarea mdInput placeholder="Textarea" placeholder="备注" formControlName="mark"></textarea>
+      <md-error *ngIf="user.get('mark').invalid">
+        备注最大500个字符
+      </md-error>
+    </md-input-container>
+
+    <button type="submit" md-raised-button [disabled]="user.invalid">提交</button>
+  </form>
+</div>

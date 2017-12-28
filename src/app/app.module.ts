@@ -32,6 +32,7 @@ import { VersionsModuleAddMenu } from "./page/versions/versions.module";
 /*插件开始 */
 import { PluginDemoModuleAddMenu } from "./plugin-demo/plugindemo.module";
 import { DashboardModuleAddMenu } from "./dashboard/dashboard.module";
+import { PluginDemoModule } from './plugin-demo/plugindemo.module';
 import { BootstrapComponent } from './plugin-demo/bootstrap/bootstrap.component';
 import { ButtonComponent } from './plugin-demo/button/button.component';
 import { CheckboxComponent } from './plugin-demo/checkbox/checkbox.component';
@@ -50,6 +51,15 @@ import { TabComponent } from './plugin-demo/tab/tab.component';
 import { ToasterComponent } from './plugin-demo/toaster/toaster.component';
 import { ToasterModule } from 'angular2-toaster';
 import { TutorialComponent } from './plugin-demo/tutorial/tutorial.component';
+import { FormComponent } from './plugin-demo/form/form.component';
+import { DateGroupComponent } from './plugin-demo/date-group/date-group.component';
+import { SearchDateComponent } from './plugins/search-date/search-date.component';
+import { EqualValidator } from './plugin-demo/equal-validator.directive';
+import { JqueryTawdateComponent } from './plugins/jquery-tawdate/jquery-tawdate.component';
+import { ModalComponent } from './plugin-demo/modal/modal.component';
+import { BsModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
+import { DycFormComponent } from './plugin-demo/dycform/dycform.component';
+import { DynamicFormsBootstrapUIModule } from "./plugins/dynamic-forms/ui-bootstrap/ui-bootstrap.module";
 /*插件结束 */
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -84,13 +94,23 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProgressSpinnerComponent,
     TabComponent,
     ToasterComponent,
-    TutorialComponent
+    TutorialComponent,
+    FormComponent,
+    EqualValidator,
+    DateGroupComponent,
+    SearchDateComponent,
+    JqueryTawdateComponent,
+    ModalComponent,
+    DycFormComponent
     /*插件结束 */
   ],
   imports: [
     /*插件开始 */
     MarkdownModule,
     ToasterModule,
+    PluginDemoModule,
+    BsModalModule,
+    DynamicFormsBootstrapUIModule,
     /*插件结束 */
     BrowserModule,
     BrowserAnimationsModule,

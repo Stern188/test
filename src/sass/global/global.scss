@@ -8,3 +8,289 @@ $theme-style: 'rounded';
 @import "components/_select2";
 @import "components/_markdown";
 @import "components/app";
+
+/*清除浮动--start*/
+.clear {zoom:1;}
+.clear:after{content:'.';height:0px;display:block;visibility:hidden;clear:both;}
+/*清除浮动--end*/
+.search-box{
+    border: 1px solid #CECBCB;
+    padding: 8px;
+	margin-bottom: 7px;
+	@include box-shadows(0 0 15px #CECBCB);
+}
+
+/*bootstrap样式覆盖--start*/
+.form-horizontal {
+	& .form-group{
+		margin-right: 0;
+		margin-left: 0;
+	}
+	& .control-label,& .radio,& .checkbox,& .radio-inline,& .checkbox-inline,& .form-control-static{
+		padding-top: 1px;
+	}
+}
+.radio label, .checkbox label {
+    padding-left: 0px!important;
+}
+.form-control {
+    height: 38px!important;
+	padding: 7px 0!important;
+}
+a:hover {
+    text-decoration: none!important;
+}
+.dashbox-body{
+	min-height:0!important;
+}
+.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+/*bootstrap样式覆盖--end*/
+
+/* 位移样式--开始*/
+.m0{
+	margin: 0!important;
+}
+.mtopf8{
+    margin-top: -8px!important;
+}
+.mtopf15{
+    margin-top: -15px!important;
+}
+.mtopf30{
+    margin-top: -30px!important;
+}
+.mtop0{
+    margin-top: 0!important;
+}
+.mtop3{
+    margin-top: 3px!important;
+}
+.mtop5{
+    margin-top: 5px!important;
+}
+.mtop10{
+    margin-top: 10px!important;
+}
+.mtop17{
+    margin-top: 17px!important;
+}
+.mtop20{
+    margin-top: 20px!important;
+}
+.mtop30{
+    margin-top: 30px!important;
+}
+.mtop40{
+    margin-top: 40px!important;
+}
+.centerr{
+	text-align: center!important;
+}
+.mleftf15{
+    margin-left: -15px!important;
+}
+.mleftf135{
+    margin-left: -135px!important;
+}
+.mleft0{
+    margin-left: 0!important;
+}
+.mleft5{
+    margin-left: 5px!important;
+}
+.mleft10{
+    margin-left: 10px!important;
+}
+.mleft15{
+    margin-left: 15px!important;
+}
+.mleft20{
+    margin-left: 20px!important;
+}
+.mleft50{
+    margin-left: 50px!important;
+}
+.mleft295{
+    margin-left: 295px!important;
+}
+.mright5{
+    margin-right: 5px!important;
+}
+.mright15{
+    margin-right: 15px!important;
+}
+.mright20{
+    margin-right: 20px!important;
+}
+.mbom5{
+    margin-bottom: 5px!important;
+}
+.mbom7{
+    margin-bottom: 7px!important;
+}
+.mbom15{
+    margin-bottom: 15px!important;
+}
+.mbom22{
+    margin-bottom: 22px!important;
+}
+.pleft0{
+	padding-left: 0!important;
+}
+.pleft3{
+	padding-left: 3px!important;
+}
+.pleft5{
+	padding-left: 5px!important;
+}
+.pleft13{
+	padding-left: 13px!important;
+}
+.pleft23{
+	padding-left: 23px!important;
+}
+.pleft36{
+	padding-left: 36px!important;
+}
+.pleft70{
+	padding-left: 70px!important;
+}
+.pright5{
+	padding-right: 5px!important;
+}
+.pbm0{
+	padding-bottom:0!important;
+}
+.p0{
+	padding: 0!important;
+}
+.p5{
+	padding: 5px!important;
+}
+.ptop8{
+	padding-top: 8px!important;
+}
+.vtop{
+	vertical-align: top;
+}
+.cboth{
+	clear:both;
+}
+.top0{
+    top: 0!important;
+}
+.r10{
+	right: 10px!important;
+}
+.pa{
+	position: absolute!important;
+}
+.ofxh{
+	overflow-x: hidden;
+}
+.ofa{
+	overflow: auto;
+}
+/* 位移样式--结束*/
+
+/* 大小样式--开始*/
+.w2p{
+	width: 2%!important;
+}
+.w50p{
+	width: 50%!important;
+}
+.w87p{
+	width: 87%!important;
+}
+.w884p{
+	width: 88.4%!important;
+}
+.w89p{
+	width: 89%!important;
+}
+.w894p{
+	width: 89.4%!important;
+}
+.w90p{
+	width: 90%!important;
+}
+.w913p{
+	width: 91.3%!important;
+}
+.w926p{
+	width: 92.6%!important;
+}
+.w100p{
+	width: 100%!important;
+}
+.w480{
+	width: 480px!important;
+}
+.w570{
+	width: 570px!important;
+}
+.w700{
+	width: 700px!important;
+}
+.input-mini {
+  width: 45px !important;
+}
+.input-xsmall {
+  width: 80px !important;
+}
+.input-small {
+  width: 120px !important;
+}
+.input-xmedium {
+  width: 150px !important;
+}
+.input-medium {
+  width: 230px !important;
+}
+.input-large {
+  width: 310px !important;
+}
+.input-xlarge {
+  width: 460px !important;
+}
+.ht3{
+	height: 3px!important;
+}
+.h100p{
+	height: 100%!important;
+}
+/* 大小样式--结束*/
+
+/* 文本样式--开始*/
+.fwnm{
+	font-weight: normal!important;
+}
+.red{
+    color: #b94a48!important;
+}
+.blue {
+  color: blue!important;
+}
+.grey {
+	 color: #B9B9B9!important;
+}
+.fs12{
+	font-size: 12px;
+}
+.fs15{
+	font-size: 15px;
+}
+/* 文本样式--结束*/
+
+/*多余文本显示省略号样式开始*/
+.infoellipsis{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+/*多余文本显示省略号样式结束*/

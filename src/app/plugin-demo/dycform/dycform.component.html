@@ -1,0 +1,60 @@
+https://github.com/udos86/ng-dynamic-forms
+<md-card class="card-demo">
+  <md-card-title>Form组件示例</md-card-title>
+  <md-card-subtitle>展示基本的组件功能</md-card-subtitle>
+  <md-card-content>
+    <form [formGroup]="formGroup">
+      <dynamic-bootstrap-form [group]="formGroup" [labelCheck]="true" [model]="formModel">
+      </dynamic-bootstrap-form>
+    </form>
+    <p>form value</p>
+    <pre>{{formGroup.value | json}}</pre>
+    <p>form json</p>
+    <pre>{{formModel | json}}</pre>
+  </md-card-content>
+</md-card>
+
+<md-card class="card-demo">
+  <md-card-title>Input组件示例</md-card-title>
+  <md-card-subtitle>展示基本的组件功能</md-card-subtitle>
+  <md-card-content>
+    <form class="form-horizontal" [formGroup]="formGroup2">
+      <dynamic-bootstrap-form [group]="formGroup2" [model]="formModel2" [labelCheck]="true" [formHorizontal]="true" (change)="onChange($event)">
+        <ng-template modelId="bootstrapFormArray" let-context="context" let-index="index">
+          <div class="col-sm-4">
+            <button type="button" class="btn btn-danger btn-sm rounded" (click)="remove(context, index)">&#10005;</button>
+            <button type="button" class="btn btn-default btn-sm rounded" (click)="move(context, index, -1)">&#9650;</button>
+            <button type="button" class="btn btn-default btn-sm rounded" (click)="move(context, index, 1)">&#9660;</button>
+            <button type="button" class="btn btn-success btn-sm rounded" (click)="insert(context, index + 1)">&#43;</button>
+          </div>
+        </ng-template>
+      </dynamic-bootstrap-form>
+    </form>
+    <p>form value</p>
+    <pre>{{formGroup2.value | json}}</pre>
+  </md-card-content>
+</md-card>
+
+<md-card class="card-demo">
+  <md-card-title>Input组件示例</md-card-title>
+  <md-card-subtitle>展示基本的组件功能</md-card-subtitle>
+  <md-card-content>
+    <form class="form-horizontal" [formGroup]="formGroup3">
+      <dynamic-bootstrap-form [group]="formGroup3" [model]="formModel3" [formHorizontal]="true" (change)="onChange($event)">
+        <ng-template modelId="bootstrapFormArray" let-context="context" let-index="index">
+          <div class="col-sm-4">
+            <button type="button" class="btn btn-danger btn-sm rounded" (click)="remove(context, index)">&#10005;</button>
+            <button type="button" class="btn btn-default btn-sm rounded" (click)="move(context, index, -1)">&#9650;</button>
+            <button type="button" class="btn btn-default btn-sm rounded" (click)="move(context, index, 1)">&#9660;</button>
+            <button type="button" class="btn btn-success btn-sm rounded" (click)="insert(context, index + 1)">&#43;</button>
+          </div>
+        </ng-template>
+      </dynamic-bootstrap-form>
+    </form>
+<!-- 
+    <p>form value</p>
+    <pre>{{formGroup.value | json}}</pre>
+    <p>form json</p>
+    <pre>{{formModel | json}}</pre> -->
+  </md-card-content>
+</md-card>

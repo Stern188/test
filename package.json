@@ -52,6 +52,7 @@
     "material-design-icons": "^3.0.1",
     "ng-dynamic-component": "^1.0.8",
     "ng-pick-datetime": "^4.3.4",
+    "ng2-bs3-modal": "^0.13.0",
     "ng2-nouislider": "^1.6.1",
     "ng2-tree": "^2.0.0-alpha.8",
     "ngx-color-picker": "^4.3.0",

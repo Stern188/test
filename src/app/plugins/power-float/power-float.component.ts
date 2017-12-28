@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'power-float',
@@ -39,7 +39,7 @@ export class PowerFloatComponent implements OnInit {
   }
   ngAfterViewInit() {
     let self = this;
-    $("[name='floatname']")['powerFloat']({
+    $(`#${self.inputId}`)['powerFloat']({
       width: self.Fwidth, //可选参数：inherit，数值(px)
       offsets: {
         x: self.FoffsetsX,

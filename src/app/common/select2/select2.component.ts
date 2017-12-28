@@ -3,9 +3,9 @@ import {
   Output, SimpleChanges, ViewChild, ViewEncapsulation, Renderer, OnInit, forwardRef
 } from '@angular/core';
 
-import 'select2';
+import  'select2';
 import { Select2OptionData } from './select2.interface';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl } from '@angular/forms';
+import {NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl} from '@angular/forms';
 
 export const SELECT2_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -15,12 +15,12 @@ export const SELECT2_VALUE_ACCESSOR: any = {
 
 @Component({
   selector: 'select2',
-  templateUrl: 'select2.component.html',
+  templateUrl:'select2.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [SELECT2_VALUE_ACCESSOR]
 })
-export class Select2Component implements AfterViewInit, OnChanges, OnDestroy, OnInit {
+export class Select2Component implements AfterViewInit, OnChanges, OnDestroy, OnInit,ControlValueAccessor {
 
   @ViewChild('selector') selector: ElementRef;
 
@@ -28,7 +28,7 @@ export class Select2Component implements AfterViewInit, OnChanges, OnDestroy, On
   @Input() data: Array<Select2OptionData>;
 
   // value for select2
-  @Input() value: string | string[];
+  @Input('ngModel') _value: string | string[];
 
   // enable / disable default style for select2
   @Input() cssImport: boolean = false;
@@ -47,25 +47,25 @@ export class Select2Component implements AfterViewInit, OnChanges, OnDestroy, On
 
   private element: JQuery = undefined;
   private check: boolean = false;
-  private onTouchedCallback: () => void = () => { };
-  private onChangeCallback: (_: any) => void = () => { };
+  private onTouchedCallback: () => void = () => {};
+  private onChangeCallback: (_: any) => void = () => {};
 
   registerOnChange(fn: any): void {
-    this.onChangeCallback = fn;
+      this.onChangeCallback = fn;
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouchedCallback = fn;
+      this.onTouchedCallback = fn;
   }
 
   constructor(private renderer: Renderer) { }
 
   ngOnInit() {
-    if (this.cssImport) {
+    if(this.cssImport) {
       const head = document.getElementsByTagName('head')[0];
-      const link: any = head.children[head.children.length - 1];
+      const link: any = head.children[head.children.length-1];
 
-      if (!link.version) {
+      if(!link.version) {
         const newLink = this.renderer.createElement(head, 'style');
         this.renderer.setElementProperty(newLink, 'type', 'text/css');
         this.renderer.setElementProperty(newLink, 'version', 'select2');
@@ -76,11 +76,11 @@ export class Select2Component implements AfterViewInit, OnChanges, OnDestroy, On
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!this.element) {
+    if(!this.element) {
       return;
     }
 
-    if (changes['data'] && JSON.stringify(changes['data'].previousValue) !== JSON.stringify(changes['data'].currentValue)) {
+    if(changes['data'] && JSON.stringify(changes['data'].previousValue) !== JSON.stringify(changes['data'].currentValue)) {
       this.initPlugin();
 
       const newValue: string = this.element.val() as string;
@@ -90,7 +90,7 @@ export class Select2Component implements AfterViewInit, OnChanges, OnDestroy, On
       });
     }
 
-    if (changes['value'] && changes['value'].previousValue !== changes['value'].currentValue) {
+    if(changes['value'] && changes['value'].previousValue !== changes['value'].currentValue) {
       const newValue: string = changes['value'].currentValue;
 
       this.setElementValue(newValue);
@@ -101,9 +101,9 @@ export class Select2Component implements AfterViewInit, OnChanges, OnDestroy, On
       });
     }
 
-    if (changes['disabled'] && changes['disabled'].previousValue !== changes['disabled'].currentValue) {
+    if(changes['disabled'] && changes['disabled'].previousValue !== changes['disabled'].currentValue) {
       this.renderer.setElementProperty(this.selector.nativeElement, 'disabled', this.disabled);
-      this.element.select2('enable', this.disabled);
+      this.element.select2('enable',this.disabled);
     }
   }
 
@@ -127,9 +127,26 @@ export class Select2Component implements AfterViewInit, OnChanges, OnDestroy, On
     this.element.off("select2:select");
   }
 
+  writeValue(obj: any): void {
+    if (obj !== this._value) {
+      this._value = obj;
+    }
+  }
+
+  get value(): string|string[] {
+    return this._value;
+  }
+
+  set value(value: string|string[]) {
+    if (this._value !== value) {
+      setTimeout(() => { // Fix for change after check issue in development mode.
+        this._value = Object.assign({},value);
+      });
+    }
+  }
   private initPlugin() {
-    if (!this.element.select2) {
-      if (!this.check) {
+    if(!this.element.select2) {
+      if(!this.check) {
         this.check = true;
         console.log("Please add Select2 library (js file) to the project. You can download it from https://github.com/select2/select2/tree/master/dist/js.");
       }
@@ -150,7 +167,7 @@ export class Select2Component implements AfterViewInit, OnChanges, OnDestroy, On
 
     Object.assign(options, this.options);
 
-    if (options.matcher) {
+    if(options.matcher) {
       jQuery.fn.select2.amd.require(['select2/compat/matcher'], (oldMatcher: any) => {
         options.matcher = oldMatcher(options.matcher);
         this.element.select2(options);
@@ -163,13 +180,13 @@ export class Select2Component implements AfterViewInit, OnChanges, OnDestroy, On
       this.element.select2(options);
     }
 
-    if (this.disabled) {
+    if(this.disabled) {
       this.renderer.setElementProperty(this.selector.nativeElement, 'disabled', this.disabled);
     }
   }
 
-  private setElementValue(newValue: string | string[]) {
-    if (Array.isArray(newValue)) {
+  private setElementValue (newValue: string | string[]) {
+    if(Array.isArray(newValue)) {
       for (let option of this.selector.nativeElement.options) {
         if (newValue.indexOf(option.value) > -1) {
           this.renderer.setElementProperty(option, 'selected', 'true');

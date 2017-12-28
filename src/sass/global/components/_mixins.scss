@@ -38,13 +38,25 @@
   &::-webkit-input-placeholder  { color: $color; } // Safari and Chrome
 }
 
+@mixin box-shadows($shadow) {
+	box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    -webkit-box-shadow: $shadow;
+    -o-box-shadow: $shadow;
+}
+
 // Drop shadows
 // By default set to: none
 @mixin box-shadow($shadow) {
   -webkit-box-shadow: none; // iOS <4.3 & Android <4.1
   box-shadow: none;
 }
-
+@mixin box-shadows($shadow) {
+	box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    -webkit-box-shadow: $shadow;
+    -o-box-shadow: $shadow;
+}
 // Labels
 // -------------------------
 @mixin label-variant($color) {

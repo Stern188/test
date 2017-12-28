@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./float.component.css']
 })
 export class FloatComponent implements OnInit {
-
+  public timeChange(date: string): void {
+    console.log(date);
+  }
   constructor() { }
 
   ngOnInit() {

@@ -1,34 +1,365 @@
-<!-- <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
-  <ngb-panel title="预设" id="config-panel-one"> -->
-    <ng-template ngbPanelContent>
-      <ul class="unstyled presets-group">
-        <li>实时</li>
-        <li *ngIf="isShowPreset">
+<md-accordion>
+  <md-expansion-panel class="w700" expanded=true>
+    <md-expansion-panel-header>
+      <md-panel-title>预设</md-panel-title>
+    </md-expansion-panel-header>
+    <ul class="presets-group">
+      <li>实时</li>
+      <div *ngIf="isShowPreset">
+        <li>
           <a href="javascript:;" (click)="getTime('con_presetBtn','30sec','1')">30 秒窗口</a>
         </li>
-        <li *ngIf="isShowPreset">
+        <li>
           <a href="javascript:;" (click)="getTime('con_presetBtn','1min','1')">1 分钟窗口</a>
         </li>
-        <li>
-          <a href="javascript:;" (click)="getTime('con_presetBtn','5min','1')">5 分钟窗口</a>
-        </li>
-        <li>
-          <a href="javascript:;" (click)="getTime('con_presetBtn','30min','1')">30 分钟窗口</a>
-        </li>
-        <li>
-          <a href="javascript:;" (click)="getTime('con_presetBtn','1hor','1')">1 小时窗口</a>
-        </li>
-      </ul>
-    </ng-template>
-  <!-- </ngb-panel>
-  <ngb-panel title="Two"> -->
-    <ng-template ngbPanelContent>
-      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-      non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-      aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-      beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-      craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable
-      VHS.
-    </ng-template>
-<!--   </ngb-panel>
-</ngb-accordion> -->
+      </div>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','5min','1')">5 分钟窗口</a>
+      </li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','30min','1')">30 分钟窗口</a>
+      </li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','1hor','1')">1 小时窗口</a>
+      </li>
+    </ul>
+    <ul class="presets-group">
+      <li>相对</li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','today','1')">今天</a>
+      </li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','1weekSoFar','1')">一周迄今</a>
+      </li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','1monthSoFar','1')">一个月迄今</a>
+      </li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','1yearSoFar','1')">年度迄今</a>
+      </li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','yesterday','1')">昨天</a>
+      </li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','1weekBef','1')">前一周</a>
+      </li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','1monthBef','1')">上月</a>
+      </li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','1yearBef','1')">上一年</a>
+      </li>
+    </ul>
+    <ul class="presets-group">
+      <li>&nbsp;</li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','15minBef','1')">前 15 分钟</a>
+      </li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','60minBef','1')">前 60 分钟</a>
+      </li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','4horBef','1')">前 4 小时</a>
+      </li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','24horBef','1')">前 24 小时</a>
+      </li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','7daysBef','1')">前 7 天</a>
+      </li>
+      <li>
+        <a href="javascript:;" (click)="getTime('con_presetBtn','30daysBef','1')">前 30 天</a>
+      </li>
+    </ul>
+  </md-expansion-panel>
+  <md-expansion-panel class="w700">
+    <md-expansion-panel-header>
+      <md-panel-title>相对</md-panel-title>
+      <md-panel-description>
+        <div class="time-a" role="button" (click)="relativeBtn()">
+          <span class="glyphicon glyphicon-floppy-disk" title="应用"></span>应用
+        </div>
+      </md-panel-description>
+    </md-expansion-panel-header>
+    <div class="col-lg-6">
+      <label class="fs12" title="最早">最早</label>
+      <div class="input-group">
+        <input id="relativeinput" (keyup)='getTime("con_relativeDropdown","","1")' type="text" value="0" class="input-mini time-input">
+        <select id="relativeselect" class="time-select" (change)='getTime("con_relativeDropdown","","1")'>
+          <option *ngFor="let dates of dateType" value={{dates.id}}>{{dates.title}}</option>
+        </select>
+      </div>
+      <md-radio-group [(ngModel)]="relativeearliestVal">
+        <md-radio-button (click)='getTime("con_relativeDropdown","","1")' value="0" id="notaligned" name='relativeearliest'>未对齐到</md-radio-button>
+        <md-radio-button (click)='getTime("con_relativeDropdown","","1")' value="1" id="datetext" name='relativeearliest'>秒开始</md-radio-button>
+      </md-radio-group>
+      <span id="relativeearliestdate" class="time-span">{{now()}}</span>
+    </div>
+    <div class="col-lg-6">
+      <p>
+        <label class="fs12" title="最晚">最晚</label>
+      </p>
+      <md-radio-group [(ngModel)]="relativelatestVal">
+        <md-radio-button (click)='getTime("con_relativeDropdown","","1")' value="0" id="immediately" name='relativelatest'>立即</md-radio-button>
+        <md-radio-button (click)='getTime("con_relativeDropdown","","1")' value="1" id="sofarstart" name='relativelatest'>当前秒开始</md-radio-button>
+      </md-radio-group>
+      <span id="relativelatestdate" class="time-span">{{now()}}</span>
+    </div>
+  </md-expansion-panel>
+  <md-expansion-panel class="w700">
+    <md-expansion-panel-header>
+      <md-panel-title>实时</md-panel-title>
+      <md-panel-description>
+        <div class="time-a" role="button" (click)='getTime("con_realBtn")'>
+          <span class="glyphicon glyphicon-floppy-disk" title="应用"></span>应用
+        </div>
+      </md-panel-description>
+    </md-expansion-panel-header>
+    <div class="col-lg-6">
+      <label class="fs12" title="最早">最早</label>
+      <div class="input-group">
+        <input type="text" id="realInput" value="0" (keyup)='getTime("con_realDropdown","","1")' class="input-mini time-input">
+        <select id="realselect" class="time-select" (change)='getTime("con_realDropdown","","1")'>
+          <option *ngFor="let dates of dateType" value={{dates.id}}>{{dates.title}}</option>
+        </select>
+      </div>
+      <span id="realdate" class="time-span">{{now()}}</span>
+    </div>
+    <div class="col-lg-6">
+      <label class="fs12" title="最晚">最晚</label>
+      <span class="time-span">now</span>
+    </div>
+  </md-expansion-panel>
+  <md-expansion-panel class="w700">
+    <md-expansion-panel-header>
+      <md-panel-title>日期范围</md-panel-title>
+      <md-panel-description>
+        <div class="time-a" role="button" (click)='getTime("con_rangeDBtn","","1")'>
+          <span class="glyphicon glyphicon-floppy-disk" title="应用"></span>应用
+        </div>
+      </md-panel-description>
+    </md-expansion-panel-header>
+    <div class="col-lg-3">
+      <select class="time-select" id="rangeselect" (change)='rangeDropdown()'>
+        <option *ngFor="let range of rangeType" value={{range.id}}>{{range.title}}</option>
+      </select>
+    </div>
+    <div *ngIf="dateFlg==='between'">
+      <table>
+        <tr>
+          <td>
+            <tawdate layid='startdate' min={{elstTime}} festival=false value={{start()}} istoday=false format={{fnlDateFmtr}}></tawdate>
+          </td>
+          <td>
+            <label id="aftertext" class="mright5 mleft5" style='line-height: 34px;'>和</label>
+          </td>
+          <td>
+            <tawdate layid='enddate' min={{elstTime}} festival=false value={{start()}} istoday=false format={{fnlDateFmtr}}></tawdate>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>00:00:00</span>
+          </td>
+          <td></td>
+          <td>
+            <span id="rangetext">23:59:59</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div *ngIf="dateFlg==='before'">
+      <table>
+        <tr>
+          <td>
+            <tawdate layid='enddate' min={{elstTime}} festival=false value={{start()}} istoday=false format={{fnlDateFmtr}}></tawdate>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>23:59:59</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div *ngIf="dateFlg==='after'">
+      <table>
+        <tr>
+          <td>
+            <tawdate layid='startdate' min={{elstTime}} festival=false value={{start()}} istoday=false format={{fnlDateFmtr}}></tawdate>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>00:00:00</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </md-expansion-panel>
+  <md-expansion-panel class="w700">
+    <md-expansion-panel-header>
+      <md-panel-title>日期和时间范围</md-panel-title>
+      <md-panel-description>
+        <div class="time-a" role="button" (click)='getTime("con_rangeDTBtn","","1")'>
+          <span class="glyphicon glyphicon-floppy-disk" title="应用"></span>应用
+        </div>
+      </md-panel-description>
+    </md-expansion-panel-header>
+    <div class="col-lg-3">
+      <select class="time-select" id="rangeandtimeselect" (change)='rangeandtimeDropdown()' value='before'>
+        <option *ngFor="let range of rangeType" value={{range.id}}>{{range.title}}</option>
+      </select>
+    </div>
+    <div *ngIf="datetimeFlg==='between'">
+      <table>
+        <tr>
+          <td>
+            <tawdate layid='startdateandtime' min={{elstTime}} festival=false value={{start()}} istoday=false format={{fnlDateFmtr}}></tawdate>
+          </td>
+          <td>
+            <div *ngIf="hasMsec">
+              <input type="text" value="12:00:00.000" id="earliesttime" onblur='timeReg()'>
+            </div>
+            <div *ngIf="!hasMsec">
+              <tawdate layid='earliesttime' onlytime=true min={{elstTime}} festival=false value="12:00:00" istoday=false format="hh:mm:ss"></tawdate>
+            </div>
+          </td>
+          <td>
+            <label id="afterandtimetext" class="mright5 mleft5">和</label>
+          </td>
+          <td>
+            <tawdate layid='enddateandtime' min={{elstTime}} festival=false value={{start()}} istoday=false format={{fnlDateFmtr}}></tawdate>
+          </td>
+          <td>
+            <div *ngIf="hasMsec">
+              <input type="text" id="latetime" value="12:00:00.000" class="form-control input-inline" onblur='timeReg()'>
+            </div>
+            <div *ngIf="!hasMsec">
+              <tawdate layid='latetime' onlytime=true min={{elstTime}} festival=false value="12:00:00" istoday=false format="hh:mm:ss"></tawdate>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <div *ngIf="hasMsec">
+              <span>
+                HH:MM:SS.SSS
+              </span>
+            </div>
+            <div *ngIf="!hasMsec">
+              <span>
+                不填默认12:00:00
+              </span>
+            </div>
+          </td>
+          <td></td>
+          <td></td>
+          <td>
+            <div *ngIf="hasMsec">
+              <span id="rangeandtimetext">
+                HH:MM:SS.SSS
+              </span>
+            </div>
+            <div *ngIf="!hasMsec">
+              <span id="rangeandtimetext">
+                不填默认12:00:00
+              </span>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div *ngIf="datetimeFlg==='before'">
+      <table>
+        <tr>
+          <td>
+            <tawdate layid='enddateandtime' min={{elstTime}} festival=false value={{start()}} istoday=false format={{fnlDateFmtr}}></tawdate>
+          </td>
+          <td>
+            <div *ngIf="hasMsec">
+              <input type="text" id="latetime" value="12:00:00.000" class="form-control input-inline" onblur='timeReg()'>
+            </div>
+            <div *ngIf="!hasMsec">
+              <tawdate layid='latetime' onlytime=true min={{elstTime}} festival=false value="12:00:00" istoday=false format="hh:mm:ss"></tawdate>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <div *ngIf="hasMsec">
+              <span id="rangeandtimetext">
+                HH:MM:SS.SSS
+              </span>
+            </div>
+            <div *ngIf="!hasMsec">
+              <span id="rangeandtimetext">
+                不填默认12:00:00
+              </span>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div *ngIf="datetimeFlg==='after'">
+      <table>
+        <tr>
+          <td>
+            <tawdate layid='startdateandtime' min={{elstTime}} festival=false value={{start()}} istoday=false format={{fnlDateFmtr}}></tawdate>
+          </td>
+          <td>
+            <div *ngIf="hasMsec">
+              <input type="text" value="12:00:00.000" id="earliesttime" class="form-control" onblur='timeReg()'>
+            </div>
+            <div *ngIf="!hasMsec">
+              <tawdate layid='earliesttime' onlytime=true min={{elstTime}} festival=false value="12:00:00" istoday=false format="hh:mm:ss"></tawdate>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <div *ngIf="hasMsec">
+              <span>
+                HH:MM:SS.SSS
+              </span>
+            </div>
+            <div *ngIf="!hasMsec">
+              <span>
+                不填默认12:00:00
+              </span>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </md-expansion-panel>
+  <div *ngIf="!isShowSenior">
+    <md-expansion-panel class="w700">
+      <md-expansion-panel-header>
+        <md-panel-title>高级</md-panel-title>
+        <md-panel-description>
+          <div class="time-a" role="button" (click)='seniorBtn()'>
+            <span class="glyphicon glyphicon-floppy-disk" title="应用"></span>应用
+          </div>
+        </md-panel-description>
+      </md-expansion-panel-header>
+      <div class="col-lg-6">
+        <label class="fs12" title="最早">最早</label>
+        <div class="input-group">
+          <input class="time-input" type="text" id="seniorElstInId" (keyup)='seniorElstKU()' onblur='seniorReg()'>
+        </div>
+        <span class="time-span" id='seniorElstSpId'>{{elstTime}}</span>
+      </div>
+      <div class="col-lg-6">
+        <label class="fs12" title="最晚">最晚</label>
+        <div class="input-group">
+          <input class="time-input" type="text" id='seniorLtstInId' (keyup)='getTime("con_seniorLtstKU","","1")' onblur='seniorReg()'>
+        </div>
+        <span class="time-span" id='seniorLtstSpId'>{{now()}}</span>
+      </div>
+    </md-expansion-panel>
+  </div>
+</md-accordion>

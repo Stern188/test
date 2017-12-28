@@ -1,6 +1,6 @@
-<button *ngIf="labelType==='button'" [attr.rel]='relFloat' class={{className}} name="floatname">{{pLabel}}</button>
-<a *ngIf="labelType==='a'" class={{className}} name="floatname" href='javascript:;' rel={{relFloat}}>{{pLabel}}</a>
-<a *ngIf="labelType==='sa'" class={{className}} name="floatname" href='javascript:;' rel={{relFloat}}>
+<button *ngIf="labelType==='button'" id={{inputId}} [attr.rel]='relFloat' class={{className}} name="floatname">{{pLabel}}</button>
+<a *ngIf="labelType==='a'" id={{inputId}} class={{className}} name="floatname" href='javascript:;' rel={{relFloat}}>{{pLabel}}</a>
+<a *ngIf="labelType==='sa'" id={{inputId}} class={{className}} name="floatname" href='javascript:;' rel={{relFloat}}>
   <span class="time-label" title={{pLabel}}>{{pLabel}}</span>
   <span class="caret"></span>
 </a>

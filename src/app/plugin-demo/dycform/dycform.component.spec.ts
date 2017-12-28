@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CollapseBodyComponent } from './collapse-body.component';
+import { DycFormComponent } from './dycform.component';
 
-describe('CollapseBodyComponent', () => {
-  let component: CollapseBodyComponent;
-  let fixture: ComponentFixture<CollapseBodyComponent>;
+describe('DynamicFormComponent', () => {
+  let component: DycFormComponent;
+  let fixture: ComponentFixture<DycFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CollapseBodyComponent ]
+      declarations: [ DycFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CollapseBodyComponent);
+    fixture = TestBed.createComponent(DycFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

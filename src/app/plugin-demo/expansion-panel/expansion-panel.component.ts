@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpansionPanelComponent implements OnInit {
   panelOpenState: boolean = false;
+
+  expandedHeight: string;
+  collapsedHeight: string = "100";
   constructor() { }
   step = 0;
 

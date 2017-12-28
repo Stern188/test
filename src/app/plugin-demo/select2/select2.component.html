@@ -9,7 +9,7 @@ https://github.com/NejcZdovc/ng2-select2-demo
 <select2 [data]="templateListData" [width]="150" [options]="templateOptions"></select2>
 
 <h2>4. Demo with a value changing</h2>
-<select2 [data]="changeListData" id="sltId" [value]="startValue" name="changeList" (valueChanged)="changed($event)"></select2>
+<select2 [data]="changeListData" id="sltId" [(ngModel)]="startValue" name="changeList" (valueChanged)="changed($event)"></select2>
 <div *ngIf="selected">
     <br/>
     <br/> Selected value in select 2:
@@ -23,7 +23,7 @@ https://github.com/NejcZdovc/ng2-select2-demo
 
 <h2>5. Demo dynamic loading</h2>
 <p>Delay for data is 4 second and 6 seconds for selected value</p>
-<select2 [data]="dynamicListData | async" [value]="dynamicStartValue | async" [width]="150"></select2>
+<select2 [data]="dynamicListData | async" [ngModel]="dynamicStartValue | async" [width]="150"></select2>
 <h2>6. Demo for custom matcher</h2>
 <p>
     Instead of default search, search now starts from the beginning of the word only.
@@ -34,9 +34,9 @@ Default:
 <select2 [data]="customListData"></select2>
 <br/>
 <br/> Custom:
-<select2 [data]="customListData" [options]="customOptions"></select2>
+<!-- <select2 [data]="customListData" [options]="customOptions"></select2> -->
 
 <h2>7. Multiple values demo</h2>
-<select2 [data]="multipleListData" [options]="multipleOptions" [width]="500" [value]="value" (valueChanged)="multipleChanged($event)"></select2>
+<select2 [data]="multipleListData" [options]="multipleOptions" [width]="500" [ngModel]="value" (valueChanged)="multipleChanged($event)"></select2>
 <br/>
 <br/> Selected values: {{ current }}

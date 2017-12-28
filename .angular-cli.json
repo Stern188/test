@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "ng-cloud"
+    "name": "ng-test"
   },
   "apps": [
     {
@@ -30,7 +30,9 @@
         "../node_modules/bootstrap/dist/css/bootstrap.css",
         "../src/assets/plugins/powerfloat/powerFloat.css",
         "../src/assets/plugins/powerfloat/common.css",
-        "../src/assets/plugins/laydate/laydate.css"
+        "../src/assets/plugins/laydate/laydate.css",
+        "../src/assets/plugins/tawdate/need/tawdate.css",
+        "../src/assets/plugins/tawdate/skins/molv/tawdate.css"
       ],
       "stylePreprocessorOptions": {
         "includePaths": [
@@ -49,7 +51,8 @@
         "../node_modules/nouislider/distribute/nouislider.js",
         "../src/assets/plugins/powerfloat/jquery-powerFloat.js",
         "../node_modules/bootstrap/dist/js/bootstrap.js",
-        "../src/assets/plugins/laydate/laydate.js"
+        "../src/assets/plugins/laydate/laydate.js",
+        "../src/assets/plugins/tawdate/tawdate.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

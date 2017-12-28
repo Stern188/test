@@ -97,11 +97,11 @@ export class Select2Component implements OnInit {
     this.multipleOptions = {
       multiple: true
     }
-    this.customOptions = {
-      matcher: (term: string, text: string) => {
-        return text.toUpperCase().indexOf(term.toUpperCase()) == 0;
-      }
-    };
+    // this.customOptions = {
+    //   matcher: (term: string, text: string) => {
+    //     return text.toUpperCase().indexOf(term.toUpperCase()) == 0;
+    //   }
+    // };
     this.current = this.value.join(' | ');
   }
 }
