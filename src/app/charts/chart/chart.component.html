@@ -1,0 +1,5 @@
+<p>
+  chart works!
+</p>
+<app-chart-editor *ngIf="status == ChartComponentStatus.EDIT" [chart]="chart"></app-chart-editor>
+<app-chart-view *ngIf="status == ChartComponentStatus.VIEW" [chart]="chart"></app-chart-view>

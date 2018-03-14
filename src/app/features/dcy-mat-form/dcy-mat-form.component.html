@@ -1,0 +1,20 @@
+<p>
+    http://ng2-dynamic-forms.udos86.de/sample/index.aot.html#/material-sample-form
+</p>
+<mat-card>
+
+    <form [formGroup]="formGroup">
+
+        <dynamic-material-form [group]="formGroup"
+                                [layout]="formLayout"
+                                [model]="formModel"
+                                (dfBlur)="onBlur($event)"
+                                (dfChange)="onChange($event)"
+                                (dfFocus)="onFocus($event)"
+                                (matEvent)="onMatEvent($event)"></dynamic-material-form>
+
+    </form>
+
+</mat-card>
+
+<pre>{{formGroup.value | json}}</pre>

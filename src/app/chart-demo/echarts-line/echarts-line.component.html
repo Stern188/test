@@ -1,0 +1,18 @@
+<app-pagebar></app-pagebar>
+<p>
+  echarts-line works!
+</p>
+
+<div style="height: 400px;">
+<app-chart #line1 [chart]="chart"></app-chart>
+</div>
+
+
+<button mat-button (click)="onClick()">GetChart</button>
+<div>
+  DATA:{{data_id}}
+</div>
+<div>
+  Debug:{{debug|async|json}}
+</div>
+<button mat-button (click)="changeMode()">ChangeMode</button>

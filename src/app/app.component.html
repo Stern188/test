@@ -1,11 +1,11 @@
 <div class="body-wrapper page-header-fixed page-sidebar-fixed" [class.page-sidebar-closed]="navbar.status === NavbarStatus.toggle">
-  <div *ngIf="auth.isAuthenticated()">
+  <div *ngIf="auth.isAuthenticated()" class='header-fixed'>
     <app-header></app-header>
     <div class="clearfix"> </div>
   </div>
 
   <div class="page-container">
-    <app-navbar *ngIf="auth.isAuthenticated()"></app-navbar>
+    <app-navbar *ngIf="auth.isAuthenticated()"  ></app-navbar>
     <div class="page-content-wrapper">
       <div class="page-content">
         <router-outlet></router-outlet>

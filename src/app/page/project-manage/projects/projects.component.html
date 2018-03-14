@@ -1,0 +1,59 @@
+<app-pagebar></app-pagebar>
+<toaster-container></toaster-container>
+<div fxLayout="row">
+  <div fxFlex="30">
+    <button (click)="befAddPro()" mat-button color="primary" style="min-width:10px">添加</button>
+  </div>
+  <div fxFlex="70">
+    <input type='text' placeholder='搜索表格内容' class="pull-right" (keyup)='commonComponent.updateFilter($event,newRows,this)' />
+  </div>
+</div>
+<div>
+  <ngx-datatable class="material" [messages]="commonComponent.messages" [headerHeight]="50" [limit]="10" [columnMode]="'force'"
+    [footerHeight]="50" [rowHeight]="'auto'" [rows]="rows">
+    <ngx-datatable-column name="项目名称" prop="name">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="版本号" prop="version">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="操作时间" prop="operate_time">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="描述" prop="description">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="操作" prop="operation">
+      <ng-template ngx-datatable-cell-template let-value="value" let-rowIndex="rowIndex" let-row="row">
+        <button (click)="befEditPro(row)" mat-button color="primary" style="min-width:10px">编辑</button>
+        <button (click)="delPro(rowIndex)" mat-button color="primary" style="min-width:10px">删除</button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>
+<ng-template #proTemp let-dialogRef="dialogRef" let-ctx="dialogRef.context">
+  <div>
+    <div class="vex-dialog-header">
+      <b>{{addOrUpldProTitle}}项目</b>
+      <i (click)="dialogRef.close(true)" class="vex-close"></i>
+    </div>
+    <div class="vex-dialog-content">
+      <form [formGroup]="proGroup">
+        <dynamic-material-form [group]="proGroup" [layout]="formLayout" [model]="proModel">
+        </dynamic-material-form>
+      </form>
+    </div>
+    <div class="vex-dialog-footer">
+      <button (click)="addOrUplPro()" mat-button color="primary" [disabled]="!proGroup.valid">提交</button>
+      <button (click)="dialogRef.close(true)" mat-button>取消</button>
+    </div>
+  </div>
+</ng-template>

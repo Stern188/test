@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { Observable, ObservableInput } from "rxjs/Observable";
+import { MatPaginatorIntl } from '@angular/material';
 
 @Injectable()
 export class CommonService {
-    private headers = new Headers({ 'Content-Type': 'application/json' });
-    constructor(private http: Http) { }
+    private headers = new Headers({ 'Content-Type': 'application/json', "Authorization": "Bearer " + localStorage.getItem("id_token") });
+    constructor(private matPaginatorIntl: MatPaginatorIntl, private http: Http) {
+        matPaginatorIntl.itemsPerPageLabel = "每页显示";
+        matPaginatorIntl.firstPageLabel = "首页";
+        matPaginatorIntl.lastPageLabel = "最后一页";
+        matPaginatorIntl.nextPageLabel = "下一页";
+        matPaginatorIntl.previousPageLabel = "上一页";
+    }
     get(url) {
-        return this.http.get(url)
+        return this.http.get(url, { headers: this.headers })
             .map(response => response.json())
             .catch(this.handleError);
     }

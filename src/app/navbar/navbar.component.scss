@@ -432,7 +432,9 @@ $sidebar-menu-sub-menu-link-icon-font-size:                             14px !de
     .page-sidebar {
       position: fixed !important;
       margin-left: 0;
-      top: $header-height;
+      overflow-y: auto!important;
+      height: 100%!important;
+      // top: $header-height;
     }
 
     .page-sidebar-menu {

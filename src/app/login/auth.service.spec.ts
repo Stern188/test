@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { AuthService } from './auth.service';
 import {Router} from "@angular/router";
-import {AppSettings, DefaultAppSetting} from "../../app.settings";
+import {AppSettings, DefaultAppSetting} from "../app.settings";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 

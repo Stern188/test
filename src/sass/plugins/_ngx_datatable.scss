@@ -1,0 +1,32 @@
+.columnfloat{
+    margin: 0;
+    min-width: 175px;
+    & li{
+        padding: 4px 14px;
+        &:hover{
+            background-color: #f6f6f6;
+        }
+        & label{
+            color: #555;
+        }
+    }
+}
+.ngx-datatable{
+    .is-gender {
+        background: blue;
+        color: white;
+    }
+    .age-is-ten {
+        background: #ffc91f;
+    }
+    .is-female {
+        background: pink;
+    }
+    .datatable-footer .datatable-footer-inner{
+        display: block!important;
+    }
+    .tblBtn{
+        min-width:10px!important;
+        margin-top:-8px!important;
+    }
+}

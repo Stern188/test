@@ -1,0 +1,40 @@
+ <div class="tree-container">
+    <p class="tree-title">Fonts tree</p>
+    <tree
+      [tree]="fonts"
+      (nodeRemoved)="onNodeRemoved($event)"
+      (nodeRenamed)="onNodeRenamed($event)"
+      (nodeSelected)="onNodeSelected($event)"
+      (nodeMoved)="onNodeMoved($event)"
+      (nodeCreated)="onNodeCreated($event)"
+      (nodeExpanded)="onNodeExpanded($event)"
+      (nodeCollapsed)="onNodeCollapsed($event)">
+    </tree>
+  </div>
+  <div class="tree-container">
+    <p class="tree-title">Programming languages tree</p>
+    <p class="notice">this tree is loaded asynchronously</p>
+    <tree
+      [tree]="pls"
+      [settings]="settings"
+      (nodeRemoved)="onNodeRemoved($event)"
+      (nodeRenamed)="onNodeRenamed($event)"
+      (nodeSelected)="onNodeSelected($event)"
+      (nodeMoved)="onNodeMoved($event)"
+      (nodeCreated)="onNodeCreated($event)">
+    </tree>
+  </div>
+  <div class="tree-container">
+    <p class="tree-title">Directory/File structure</p>
+    <p class="notice">this tree has advanced configurations</p>
+    <tree
+      [tree]="dfs"
+      (nodeRemoved)="onNodeRemoved($event)"
+      (nodeRenamed)="onNodeRenamed($event)"
+      (nodeSelected)="onNodeSelected($event)"
+      (nodeMoved)="onNodeMoved($event)"
+      (nodeCreated)="onNodeCreated($event)"
+      (nodeExpanded)="onNodeExpanded($event)"
+      (nodeCollapsed)="onNodeCollapsed($event)">
+    </tree>
+  </div>

@@ -1,16 +1,20 @@
 <div class="app-header">
-  <md-toolbar>
+  <mat-toolbar>
     <a routerLink="/index/index">
       <img src="assets/layout/ngCloud/img/logo.png" alt="logo" class="logo-default" />
       <label style="cursor: pointer;">自测系统</label>
     </a>
-    <button md-button (click)="sidebar_toggle()">
-      <md-icon>list</md-icon>
+    <button mat-button (click)="sidebar_toggle()">
+      <mat-icon>list</mat-icon>
     </button>
     <span class="header-spacer"></span>
-
-    <button md-button (click)="logout()">
-      <md-icon>highlight_off</md-icon>
+    <button mat-button>
+      <mat-icon>notifications none</mat-icon>
+      <span class="badge badge-default"> 7 </span>
     </button>
-  </md-toolbar>
+
+    <button mat-button (click)="logout()">
+      <mat-icon>highlight_off</mat-icon>
+    </button>
+  </mat-toolbar>
 </div>

@@ -1,0 +1,576 @@
+<div>
+  注：中文部分是自己翻译的，不对的地方欢迎修改补充！
+  <h3>
+    Documentation
+    <br>
+    <small>
+      <a href="http://swimlane.github.io/ngx-datatable/" target="_blank">
+        Demo
+      </a>
+      <br>
+      <a href="https://swimlane.gitbooks.io/ngx-datatable/content/api/table/inputs.html?q=" target="_blank">
+        Online
+      </a>
+      <br>
+      <a href="https://www.gitbook.com/download/pdf/book/swimlane/ngx-datatable" target="_blank">
+        PDF
+      </a>
+    </small>
+  </h3>
+  <h3>API</h3>
+  <ul>
+    <li>
+      Table(&lt;ngx-datatable&gt;标签上的属性)
+      <ul>
+        <li>
+          Inputs
+          <ul>
+            <li>
+              <h2>
+                <code>columnMode</code>
+              </h2>
+              <p>
+                The mode which the columns are distributed across the table. For example:
+                <code>flex</code> will use flex-grow api,
+                <code>force</code> will distribute proportionally and
+                <code>standard</code> will just distrbute based on widths. Default value:
+                <code>standard</code>
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>columns</code>
+              </h2>
+              <p>
+                Array of columns to display.
+              </p>
+              <p>
+                要显示的列数组。
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>count</code>
+              </h2>
+              <p>
+                The total count of all rows. Default value:
+                <code>0</code>
+              </p>
+              <p>
+                所有行的总数。
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>externalPaging</code>
+              </h2>
+              <p>
+                Should the table use external paging vs client-side. Default value:
+                <code>false</code>
+              </p>
+              <p>
+                该table应该使用外部分页还是客户端吗，默认为false.
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>externalSorting</code>
+              </h2>
+              <p>
+                Should the table use external sorting vs client-side.
+                <code>false</code>
+              </p>
+              <p>
+                该table应该使用外部排序还是客户端吗，默认为false.
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>footerHeight</code>
+              </h2>
+              <p>
+                The height of the footer in pixels. Pass a
+                <code>falsey</code> for no footer. Default value:
+                <code>0</code>
+              </p>
+              <p>
+                页脚的高度,单位为像素。通过设置false来去掉页脚，默认为0.
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>headerHeight</code>
+              </h2>
+              <p>
+                The height of the header in pixels. Pass a
+                <code>falsey</code> for no header. Default value:
+                <code>30</code>
+              </p>
+              <p>
+                页眉的高度,单位为像素。通过设置false来去掉页眉，默认为30.
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>limit</code>
+              </h2>
+              <p>
+                The page size to be shown. Default value:
+                <code>undefined</code>
+              </p>
+              <p>
+                要显示的每页条数.默认为undefined.
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>offset</code>
+              </h2>
+              <p>
+                The current offset ( page - 1 ) shown. Default value:
+                <code>0</code>
+              </p>
+              <p>
+                当前偏移量（page- 1）显示.默认为0.
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>rowHeight</code>:
+                <code>Function|number|undefined</code>
+              </h2>
+              <p>The height of the row. </p>
+              <p>行高</p>
+              <p>Pass undefined for fluid heights, this is not possible in virtual scrolling.</p>
+              <p>If using virtual scrolling, you must pass a function or a number to caculate the heights.</p>
+              <p>如果使用上下滚动，你必须传递一个函数或一个数字计算高度。</p>
+              <p>Using a function, you can bind individual row heights such as:</p>
+              <p>使用函数，可以绑定单个行高度，例如</p>
+              <pre>
+                <code>getRowHeight(row)&#123;
+                  <span>// set default</span>
+                  <span>if</span>(!row) 
+                  <span>return</span> 
+                  <span>50</span>;
+                
+                  <span>// return my height</span>
+                  <span>return</span> row.height; 
+                }
+                </code>
+              </pre>
+            </li>
+            <li>
+              <h2>
+                <code>rows</code>
+              </h2>
+              <p>
+                Array of rows to display.
+              </p>
+              <p>
+                要显示的行数组。
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>scrollbarH</code>
+              </h2>
+              <p>
+                Enabled horizontal scrollbars.Default value:
+                <code>false</code>
+              </p>
+              <p>
+                启用水平滚动条。默认false，不启动
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>scrollbarV</code>
+              </h2>
+              <p>
+                Enable vertical scrollbar for fixed height vs fluid. This is necessary for virtual scrolling.Default value:
+                <code>false</code>
+              </p>
+              <p>
+                使用固定高度来启用垂直滚动条。这对于上下滚动是必要的。默认false，不启动
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>displayCheck</code>
+              </h2>
+              <p>
+                A function you can use to check whether you want to show the checkbox for a particular row based on a criteria. Example:
+                <code>(row, column, value) => &#123; return row.name !== 'Ethel Price'; }</code>
+              </p>
+              <p>
+                可以使用一个函数来设置您希望显示的特定行的复选框，比如
+                <code>(row, column, value) => &#123; return row.name !== 'Ethel Price'; }</code>。
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>selected</code>
+              </h2>
+              <p>List of row objects that should be represented as selected in the grid. It does object equality, for prop checking
+                use the
+                <code>selectCheck</code> function.</p>
+              <p>Default value:
+                <code>[]</code>
+              </p>
+              <p>
+                被选中的行对象列表数据。默认[]。
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>selectionType</code>
+              </h2>
+              <p>Type of row selection. Options are
+                <code>single</code>,
+                <code>multi</code>,
+                <code>multiClick</code> and
+                <code>chkbox</code>. For no selection pass a
+                <code>falsey</code>. Default value:
+                <code>undefined</code>
+              </p>
+              <p>
+                行选择类型。参数有single、multi、multiClick和checkbox。如果没有选择则设置false。默认undefined。
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>selectAllRowsOnPage</code>
+              </h2>
+              <p>
+                点击全选复选框时是否选中全部数据，默认true，选择本页数据。
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>sortType</code>
+              </h2>
+              <p>
+                Single vs Multi sorting. When in single mode, any click after the initial click will replace the current selection with the
+                next selection. In multi selection mode, any incremental click will add to the current selection array. Default
+                value:
+                <code>single</code>
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>rowClass</code>
+              </h2>
+              <p>
+                A function that will invoked with each row's properties. The result of the function can be a string or object with key/boolean
+                like:
+              </p>
+              <pre>
+                <code>
+                  getRowClass(row) &#123;
+                    return &#123;
+                      'is-age-10': row.age === 10
+                    }
+                  }
+                </code>
+              </pre>
+            </li>
+            <li>
+              <h2>
+                <code>groupRowsBy</code>
+              </h2>
+              <p>
+                按哪个字段进行分组。
+              </p>
+            </li>
+            <li>
+              <h2>
+                <code>groupExpansionDefault</code>
+              </h2>
+              <p>
+                默认是否展开分组，默认为false，不展开。
+              </p>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Outputs
+          <ul>
+            <li>
+              <h3>
+                <code>activate</code>
+              </h3>
+              <p>A cell or row was focused via keyboard or mouse click.</p>
+              <pre>
+                <code>&#123;
+                  type: 'keydown'|'click'|'dblclick'
+                  event
+                  row
+                  column
+                  value
+                  cellElement
+                  rowElement
+                }
+                </code>
+              </pre>
+              <p>单元格或行的键盘或鼠标回调方法</p>
+            </li>
+            <li>
+              <h3>
+                <code>page</code>
+              </h3>
+              <p>The table was paged either triggered by the pager or the body scroll.</p>
+              <pre>
+                <code>&#123;
+                  count
+                  pageSize
+                  limit
+                  offset
+                }
+                </code>
+              </pre>
+              <p>每当点击分页、排序或滑动滚动条时触发。</p>
+            </li>
+            <li>
+              <h3>
+                <code>tableContextmenu</code>
+              </h3>
+              <p>The context menu was invoked on the table.</p>
+              <pre>
+                <code>&#123;
+                  event,
+                  type,
+                  content
+                  }
+                </code>
+              </pre>
+              <p>table上面调用了上下文菜单。</p>
+            </li>
+            <li>
+              <h3>
+                <code>select</code>
+              </h3>
+              <p>A cell or row was selected.</p>
+              <pre>
+                <code>&#123;
+                  selected
+                }
+                </code>
+              </pre>
+              <p>选择单元格或行时的回调方法</p>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Column(&lt;ngx-datatable-column&gt;标签上的属性)
+      <ul>
+        <li>
+          Inputs
+          <ul>
+            <li>
+              <h3>
+                <code>name</code>:
+                <code>string</code>
+              </h3>
+              <p>Column label. If none specified, it will use the prop value and decamelize it.</p>
+              <p>列标签。如果没有指定，将使用prop的值以及decamelize它。</p>
+            </li>
+            <li>
+              <h3>
+                <code>prop</code>:
+                <code>string</code>
+              </h3>
+              <p>The property to bind the row values to. If
+                <code>undefined</code>, it will camelcase the name value.
+              </p>
+              <p>要绑定的属性列的值。如果是undefined，将会用name属性对应的值。</p>
+            </li>
+            <li>
+              <h3>
+                <code>flexGrow</code>:
+                <code>number</code>
+              </h3>
+              <p>
+                The grow factor relative to other columns. Same as the
+                <a href="http%20=/www.w3.org/TR/css3-flexbox">flex-grow API</a>. It will any available extra width and distribute it proportionally according to all columns'
+                flexGrow values. Default value:
+                <code>0</code>
+              </p>
+            </li>
+            <li>
+              <h3>
+                <code>maxWidth</code>:
+                <code>number</code>
+              </h3>
+              <p>Maximum width of the column in pixels. Default value:
+                <code>undefined</code>.
+              </p>
+              <p>列的最大宽度，单位为像素，默认undefined。</p>
+            </li>
+            <li>
+              <h3>
+                <code>minWidth</code>:
+                <code>number</code>
+              </h3>
+              <p>Minimum width of the column in pixels. Default value:
+                <code>100</code>.
+              </p>
+              <p>列的最小宽度，单位为像素，默认100。</p>
+            </li>
+            <li>
+              <h3>
+                <code>width</code>:
+                <code>number</code>
+              </h3>
+              <p>The width of the column by default in pixels. Default value:
+                <code>150</code>.
+              </p>
+              <p>列的宽度，单位为像素，默认150。</p>
+            </li>
+            <li>
+              <h3>
+                <code>resizeable</code>:
+                <code>boolean</code>
+              </h3>
+              <p>The column can be resized manually by the user. Default value:
+                <code>true</code>.
+              </p>
+              <p>列的大小可以由用户手动伸缩。</p>
+            </li>
+            <li>
+              <h3>
+                <code>sortable</code>:
+                <code>boolean</code>
+              </h3>
+              <p>Sorting of the row values by this column. Default value:
+                <code>true</code>.
+              </p>
+            </li>
+            <li>
+              <h3>
+                <code>draggable</code>:
+                <code>boolean</code>
+              </h3>
+              <p>The column can be dragged to re-order. Default value:
+                <code>true</code>.
+              </p>
+              <p>拖拽列以重新排序。</p>
+            </li>
+            <li>
+              <h3>
+                <code>canAutoResize</code>:
+                <code>boolean</code>
+              </h3>
+              <p>Whether the column can automatically resize to fill extra space. Default value:
+                <code>true</code>.
+              </p>
+              <p>列是否可以自动调整大小以填充额外的空间。</p>
+            </li>
+            <li>
+              <h3>
+                <code>checkboxable</code>:
+                <code>boolean</code>
+              </h3>
+              <p>Indicates whether the column should show a checkbox component for selection. Only applicable when the selection
+                mode is
+                <code>checkbox</code>.
+              </p>
+              <p>指示列是否应该显示复选框组件以供选择。只适用于选择模式为
+                <code>checkbox</code>。</p>
+            </li>
+            <li>
+              <h3>
+                <code>headerCheckboxable</code>:
+                <code>boolean</code>
+              </h3>
+              <p>Indicates whether the column should show a checkbox component in the header cell. Only applicable when the
+                selection mode is
+                <code>checkbox</code>.
+              </p>
+              <p>指示列是否应该在标题单元格中显示复选框组件。只适用于选择模式为
+                <code>checkbox</code>。</p>
+            </li>
+            <li>
+              <h3>
+                <code>editable</code>:
+                <code>boolean</code>
+              </h3>
+            </li>
+            <li>
+              <h3>
+                <code>frozenLeft</code>:
+                <code>boolean</code>
+              </h3>
+              <p>
+                Determines if the column is frozen to the left. Default value:
+                <code>false</code>
+              </p>
+              <p>确定列是否冻结到左侧。默认false</p>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Row Detail(&lt;ngx-datatable-group-header&gt;、&lt;ngx-datatable-row-detail&gt;标签上的属性)
+      <ul>
+        <li>
+          Inputs
+          <ul>
+            <li>
+              <h3>
+                <code>rowHeight</code>:
+                <code>Number|Function</code>
+              </h3>
+              <p>Height of the detail row.</p>
+              <p>detail行的高度</p>
+              <p>
+                <strong>Template</strong>
+              </p>
+              <pre>
+                <code>
+                  <span>&lt;<span>ngx-datatable-row-detail</span> [<span>rowHeight</span>]=<span>"getHeight"</span> #<span>myDetailRow</span> (<span>toggle</span>)=<span>"onDetailToggle($event)"</span>&gt;</span>
+                  <span>&lt;<span>ng-template</span> <span>let-row</span>=<span>"row"</span> <span>ngx-datatable-row-detail-template</span>&gt;</span>
+                  <span>&lt;<span>div</span>&gt;</span><span>&lt;<span>strong</span>&gt;</span>Address<span>&lt;/<span>strong</span>&gt;</span><span>&lt;/<span>div</span>&gt;</span>
+                  <span>&lt;<span>div</span>&gt;</span><span>row.address.city}}, row.address.state}}</span><span>&lt;/<span>div</span>&gt;</span>
+                  <span>&lt;/<span>ng-template</span>&gt;</span>
+                  <span>&lt;/<span>ngx-datatable-row-detail</span>&gt;</span>
+                </code>
+              </pre>
+              <p>
+                <strong>Typescript</strong>
+              </p>
+              <pre>
+                <code>
+                  getHeight(row: any, <span>index</span>: number): number &#123;
+                    <span>return</span> row.someHeight;
+                  }
+                </code>
+              </pre>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Outputs
+          <ul>
+            <li>
+              <h3>
+                <code>toggle</code>
+              </h3>
+              <p>Row detail row was toggled.</p>
+              <p>detail行的触发方法</p>
+              <pre>
+                <code>&#123;
+                  type: 'all' || 'row'
+                  value: boolean || row object
+                }
+                </code>
+              </pre>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

@@ -4,5 +4,20 @@
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 @import '~angular2-toaster/toaster';
+@import '~ngx-bootstrap/datepicker/bs-datepicker.css';
 @import "sass/layout/ngCloud/themes/topsec";
+@import "sass/plugins/_ngx_datatable";
+@import "sass/plugins/_ngx_modialog";
 
+//to fixed mat-bootstrap css bug
+.has-error li.help-block {
+    display: block;
+}
+.radio .check+span {
+    position: relative;
+}
+//to fixed mat-bootstrap css bug end 
+
+.header-fixed {
+    z-index: 998!important;
+}

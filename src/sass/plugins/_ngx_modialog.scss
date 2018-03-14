@@ -1,0 +1,16 @@
+.vex-content{
+    .vex-dialog-header{
+        border-bottom: 1px solid #ccc;
+    }
+    .vex-dialog-content{
+        max-height:650px;
+        overflow: auto;
+    }
+    .vex-dialog-footer{
+        padding: 5px 0;
+        text-align: center;
+    }
+    modal-overlay{
+        z-index: 999 !important
+    }
+}

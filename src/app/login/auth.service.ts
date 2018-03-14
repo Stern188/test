@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import {Router} from "@angular/router";
-import {AppSettings} from "../app.settings";
-import {Observable} from "rxjs/Observable";
+import { Router } from "@angular/router";
+import { AppSettings } from "../app.settings";
+import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/of";
 import "rxjs/add/observable/timer";
 import "rxjs/add/operator/mergeMap";
 import 'rxjs/add/operator/catch';
 import * as auth0 from 'auth0-js';
-import {User} from "./user";
-import {Http} from "@angular/http";
+import { User } from "./user";
+import { Headers, Http } from "@angular/http";
 
 @Injectable()
 export class AuthService {
@@ -24,10 +24,11 @@ export class AuthService {
     redirectUri: AppSettings.env_vars.AUTH_CONFIG.redirectUri,
     scope: 'openid profile'
   });
+  private headers = new Headers({ 'Content-Type': 'application/json' });
 
-  constructor(public router: Router,private http:Http) {}
+  constructor(public router: Router, private http: Http) { }
 
-  public login(user:User): void {
+  public login(user: User): void {
     /*https://127.0.0.1/authorize?client_id=ngCloud&
     response_type=token%20id_token&
     scope=openid%20profile&
@@ -37,20 +38,20 @@ export class AuthService {
     auth0Client=eyJuYW1lIjoiYXV0aDAuanMiLCJ2ZXJzaW9uIjoiOC44LjAifQ%3D%3D*/
     this.http.post(AppSettings.env_vars.AUTH_CONFIG.apiUrl,
       {
-        name:user.name,
-        password:user.password,
-        response_type:['token','id_token'],
-        scope:'web',
-        client_type:'webui',
-        client_id:'',
-      })
+        name: user.name,
+        password: user.password,
+        response_type: ['token', 'id_token'],
+        scope: 'web',
+        client_type: 'webui',
+        client_id: '',
+      }, { headers: this.headers })
       .map(response => response.json())
-      .catch( (error,caught) => {return Observable.throw('Error')} )
+      .catch((error, caught) => { return Observable.throw('Error') })
       .subscribe(
-          authResult=>{
-            this.setSession(authResult);
-            this.router.navigate(['/']);
-          }
+        authResult => {
+          this.setSession(authResult);
+          this.router.navigate(['/']);
+        }
       );
   }
 
@@ -85,13 +86,11 @@ export class AuthService {
 
   private setSession(authResult): void {
     // Set the time that the access token will expire at
-    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + Date.now());
-
-    localStorage.setItem('access_token', authResult.accessToken);
-    localStorage.setItem('id_token', authResult.idToken);
+    const expiresAt = JSON.stringify(((authResult.expires_in - 5) * 1000) + Date.now());
+    localStorage.setItem('access_token', authResult.access_token);
+    localStorage.setItem('id_token', authResult.id_token);
     localStorage.setItem('expires_at', expiresAt);
-
-    //this.scheduleRenewal();
+    this.scheduleRenewal();
   }
 
   public logout(): void {
@@ -105,8 +104,8 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    if( localStorage.getItem('access_token') &&
-       localStorage.getItem('expires_at')) {
+    if (localStorage.getItem('access_token') &&
+      localStorage.getItem('expires_at')) {
       // Check whether the current time is past the
       // access token's expiry time
       const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
@@ -116,9 +115,9 @@ export class AuthService {
   }
 
   public renewToken() {
-    this.auth0.renewAuth({
-      audience: AppSettings.env_vars.AUTH_CONFIG.apiUrl,
-      redirectUri: 'http://localhost:3001/silent',
+    /* this.auth0.renewAuth({
+      audience: AppSettings.env_vars.AUTH_CONFIG.redirectUri,
+      redirectUri: AppSettings.env_vars.AUTH_CONFIG.redirectUri,
       usePostMessage: true
     }, (err, result) => {
       if (err) {
@@ -127,11 +126,23 @@ export class AuthService {
         alert(`Successfully renewed auth!`);
         this.setSession(result);
       }
-    });
+    }); */
+    this.headers.set("Authorization", "Bearer " + localStorage.getItem("id_token"));
+    this.http.post(AppSettings.env_vars.AUTH_CONFIG.redirectUri, {},
+      {
+        headers: this.headers
+      })
+      .map(response => response.json())
+      .catch((error, caught) => { return Observable.throw('Error') })
+      .subscribe(
+        authResult => {
+          this.setSession(authResult);
+        }
+      );
   }
 
   public scheduleRenewal() {
-    if(!this.isAuthenticated()) return;
+    if (!this.isAuthenticated()) return;
     this.unscheduleRenewal();
 
     const expiresAt = JSON.parse(window.localStorage.getItem('expires_at'));
@@ -156,7 +167,7 @@ export class AuthService {
   }
 
   public unscheduleRenewal() {
-    if(!this.refreshSubscription) return;
+    if (!this.refreshSubscription) return;
     this.refreshSubscription.unsubscribe();
   }
 

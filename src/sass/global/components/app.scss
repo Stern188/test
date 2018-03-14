@@ -17,7 +17,12 @@ body {
   left: 0;
   right: 0;
 }
-
+.body-wrapper {
+  overflow-y: auto;
+}
+.page-container {
+  position: inherit !important;
+}
 /*
  Internet Explorer 10 doesn't differentiate device width from viewport width, and thus doesn't
  properly apply the media queries in Bootstrap's CSS. To address this,

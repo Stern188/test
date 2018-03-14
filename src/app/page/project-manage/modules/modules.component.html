@@ -1,0 +1,61 @@
+<app-pagebar></app-pagebar>
+<div fxLayout="row">
+  <div fxFlex="30">
+    <button (click)="befAddMod()" mat-button color="primary" style="min-width:10px">添加</button>
+    <power-float pLabel="自定义列" className="btn btn-search" inputId="float2" Fposition="4-1" relFloat='columnFlt' FedgeAdjust=true
+      id="dateFlt2" labelType='sa'>
+      <ul class="columnfloat">
+        <li *ngFor='let col of allColumns'>
+          <input type='checkbox' [id]="col.name" (click)='toggle(col)' [checked]='isChecked(col)' />
+          <label [attr.for]="col.name">{{col.name}}</label>
+        </li>
+      </ul>
+    </power-float>
+  </div>
+  <div fxFlex="70">
+    <input type='text' placeholder='搜索表格内容' style="margin: 15px;" class="pull-right" (keyup)='commonComponent.updateFilter($event,newRows,this)'
+    />
+  </div>
+</div>
+<div>
+  <ngx-datatable class="material" [offset]="commonComponent.offset" [messages]="commonComponent.messages" [headerHeight]="commonComponent.headerHeight"
+    [limit]="commonComponent.pageSize" [columnMode]="commonComponent.columnMode" [footerHeight]="commonComponent.footerHeight"
+    [rowHeight]="commonComponent.rowHeight" [rows]="rows">
+    <ngx-datatable-column *ngFor="let col of columns" [name]="col.name" [prop]="col.title">
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="操作" prop="operation">
+      <ng-template ngx-datatable-cell-template let-value="value" let-rowIndex="rowIndex" let-row="row">
+        <button (click)="befEditMod(row)" mat-button color="primary" class="tblBtn">编辑</button>
+        <button (click)="delMod(rowIndex)" mat-button color="primary" class="tblBtn">删除</button>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-footer>
+      <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize" let-selectedCount="selectedCount"
+        let-curPage="curPage" let-offset="offset">
+        <div class="pull-right">
+          <mat-paginator [length]="rowCount" (page)="commonComponent.getNumberOfPages($event)" [pageSize]="commonComponent.pageSize"
+            [pageSizeOptions]="commonComponent.pageSizeOptions" [showFirstLastButtons]="commonComponent.showFirstLastButtons">
+          </mat-paginator>
+        </div>
+      </ng-template>
+    </ngx-datatable-footer>
+  </ngx-datatable>
+</div>
+<ng-template #modTemp let-dialogRef="dialogRef" let-ctx="dialogRef.context">
+  <div>
+    <div class="vex-dialog-header">
+      <b>{{addOrUpldModTitle}}项目</b>
+      <i (click)="dialogRef.close(true)" class="vex-close"></i>
+    </div>
+    <div class="vex-dialog-content">
+      <form [formGroup]="modGroup">
+        <dynamic-material-form [group]="modGroup" [layout]="formLayout" [model]="modModel">
+        </dynamic-material-form>
+      </form>
+    </div>
+    <div class="vex-dialog-footer">
+      <button (click)="addOrUplMod()" mat-button color="primary" [disabled]="!modGroup.valid">提交</button>
+      <button (click)="dialogRef.close(true)" mat-button>取消</button>
+    </div>
+  </div>
+</ng-template>

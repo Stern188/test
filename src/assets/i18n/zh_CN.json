@@ -1,108 +1,17 @@
 {
+  "error": {
+    "required": "该字段必须填写"
+  },
+  "Login": {
+    "rember_me": "记住我",
+    "sign_in": "登录",
+    "user_name": "用户名",
+    "password": "密码",
     "error": {
-        "required": "该字段必须填写"
-    },
-    "Login": {
-        "sign_in": "登陆",
-        "user_name": "用户名",
-        "password": "密码",
-        "error": {
-            "valid_username": "请输入一个合法的用户名"
-        }
-    },
-    "plugins": {
-        "table": {
-            "search_table": "搜索表格内容"
-        },
-        "tawdate": {
-            "clear": "清空",
-            "today": "今天",
-            "confirm": "确认",
-            "time": "时间",
-            "date_format_wrong": "日期不符合格式，请重新选择。",
-            "date_not_valid": "日期不在有效期内，请重新选择。",
-            "elem_error": "选择器elem错误",
-            "year": "年",
-            "new_year": "元旦",
-            "woman": "妇女",
-            "qingming": "清明",
-            "labour": "劳动",
-            "children": "儿童",
-            "teacher": "教师",
-            "national": "国庆",
-            "hours": "小时",
-            "minutes": "分钟",
-            "seconds": "秒数",
-            "tip": "提示"
-        },
-        "search_date": {
-            "30sec": "30 秒窗口",
-            "1min": "1 分钟窗口",
-            "5min": "5 分钟窗口",
-            "30min": "30 分钟窗口",
-            "1hor": "1 小时窗口",
-            "today": "今天",
-            "1week_so_far": "一周迄今",
-            "1month_so_far": "一个月迄今",
-            "1year_so_far": "年度迄今",
-            "yesterday": "昨天",
-            "1week_before": "前一周",
-            "1month_before": "上月",
-            "1year_before": "上一年",
-            "15min_before": "前 15 分钟",
-            "60min_before": "前 60 分钟",
-            "4hor_before": "前 4 小时",
-            "24hor_before": "前 24 小时",
-            "7days_before": "前 7 天",
-            "30days_before": "前 30 天",
-            "preset": "预设",
-            "relative": "相对",
-            "real_time": "实时",
-            "earliest": "最早",
-            "latest": "最晚",
-            "not_align_to": "未对齐到",
-            "seconds_start": "秒开始",
-            "current_second_start": "当前秒开始",
-            "min_start": "分钟开始",
-            "current_min_start": "当前分钟开始",
-            "hor_start": "小时开始",
-            "current_hor_start": "当前小时开始",
-            "day_start": "一天开始",
-            "current_day_start": "今日开始",
-            "week_start": "每周的第一天",
-            "current_week_start": "本周的第一天",
-            "month_start": "每月的第一天",
-            "current_month_start": "本月的第一天",
-            "quarter_start": "每季度第一天",
-            "current_quarter_start": "本季度第一天",
-            "year_start": "每年第一天",
-            "current_year_start": "本年度第一天",
-            "immediately": "立即",
-            "date_range": "日期范围",
-            "and": "和",
-            "date_time_range": "日期和时间范围",
-            "senior": "高级",
-            "between": "介于",
-            "before": "之前",
-            "after": "之后",
-            "sec_before": "秒前",
-            "min_before": "分钟前",
-            "hor_before": "小时前",
-            "days_before": "天前",
-            "week_before": "周前",
-            "month_before": "个月前",
-            "quarter_before": "季度前",
-            "years_before": "年前",
-            "seconds": "秒",
-            "minutes": "分钟",
-            "hours": "小时",
-            "days": "天",
-            "weeks": "周",
-            "months": "个月",
-            "quarters": "季度",
-            "years": "年",
-            "front": "前",
-            "to": "至"
-        }
+      "valid_username": "请输入一个合法的用户名"
     }
+  },
+  "demo": {
+    "ip_object": "IP地址对象"
+  }
 }

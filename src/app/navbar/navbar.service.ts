@@ -136,6 +136,7 @@ export class NavbarService {
           item.open=true;
           opend=true;
           this.menu_openid.push(id);
+          // console.log('open '+id);
           if(item.link){
             this.router.navigateByUrl(item.link);
           }

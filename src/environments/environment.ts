@@ -4,9 +4,9 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false,
-  mock_api:true,
-  mock_config:{
-   api_prefix:'/api_1.0'
+  production: true,
+  mock_api: false,
+  mock_config: {
+    api_prefix: '/api/v1'
   }
 };

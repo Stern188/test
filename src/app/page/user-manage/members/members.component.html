@@ -1,149 +1,100 @@
-<app-pagebar></app-pagebar>
-<toaster-container></toaster-container>
-<div>
-    <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='搜索表格内容...' (keyup)='updateFilter($event)'
-    />
-    <a href="javascript:void(0)" class="btn btn-raised btn-xs" (click)="showAddForm()">添加用户
-        <md-icon>{{isShow?'keyboard_arrow_up':'keyboard_arrow_down'}}</md-icon>
-    </a>
-    <form *ngIf="isShow" #memberForm="ngForm" (ngSubmit)="add()">
-        <div fxLayout="row">
-            <div fxShow fxHide.sm="true" fxFlex="10"> </div>
-            <div fxFlex.gt-sm="100" fxFlex="80">
-                <div fxLayout="row" fxLayoutGap="10px">
-                    <md-input-container>
-                        <input mdInput placeholder="姓名" pattern="^[\u4e00-\u9fa5]{2,4}$" id="nameFormControl" [(ngModel)]="users.name" #name="ngModel"
-                            name="nameFormControl" required>
-                        <md-error *ngIf="name.hasError('required')">
-                            姓名不能为空
-                        </md-error>
-                        <md-error *ngIf="name.hasError('pattern')">
-                            姓名格式错误
-                        </md-error>
-                        <md-hint align="start">
-                            <strong>姓名必须为2-4位汉字</strong>
-                        </md-hint>
-                        <!-- <md-hint align="end">{{name.value.length}} / 16</md-hint> -->
-                    </md-input-container>
-                    <md-input-container>
-                        <input mdInput placeholder="用户名" pattern="^[A-Za-z][\w]{5,15}$" id="usernameFormControl" [(ngModel)]="users.username" #username="ngModel"
-                            name="usernameFormControl" required>
-                        <md-error *ngIf="username.hasError('required')">
-                            用户名不能为空
-                        </md-error>
-                        <md-error *ngIf="username.hasError('pattern')">
-                            用户名格式错误
-                        </md-error>
-                        <md-hint align="start">
-                            <strong>用户名格式为字母开头、6-16字节、只允许输入字母数字下划线</strong>
-                        </md-hint>
-                        <!-- <md-hint align="end">{{username.value.length}} / 16</md-hint> -->
-                    </md-input-container>
-                </div>
-            </div>
-            <div fxShow fxHide.sm="true" fxFlex="10"> </div>
-        </div>
-        <div fxLayout="row">
-            <div fxShow fxHide.sm="true" fxFlex="10"> </div>
-            <div fxFlex.gt-sm="100" fxFlex="80">
-                <div fxLayout="row" fxLayoutGap="10px">
-                    <md-input-container>
-                        <input mdInput placeholder="邮箱" id="emailFormControl" email [(ngModel)]="users.email" #email="ngModel" name="emailFormControl"
-                            required>
-                        <md-error *ngIf="email.hasError('required')">
-                            邮箱不能为空
-                        </md-error>
-                        <md-error *ngIf="!email.hasError('required') && email.hasError('email')">
-                            邮箱格式不正确
-                        </md-error>
-                    </md-input-container>
-                    <md-select style="width: 50%;" multiple=true placeholder="分配项目" id="projectFormControl" name="projectFormControl" [(ngModel)]="users.project"
-                        #project="ngModel">
-                        <md-option *ngFor="let project of projects" [value]="project.id">
-                            {{ project.text }}
-                        </md-option>
-                    </md-select>
-                </div>
-            </div>
-            <div fxShow fxHide.sm="true" fxFlex="10"> </div>
-        </div>
-        <div class="form-actions" fxLayout="row" style="margin-bottom: 10px;">
-            <div fxShow fxHide.sm="true" fxFlex="10"> </div>
-            <button type="submit" md-raised-button [disabled]="!memberForm.form.valid">保存</button>
-            <div fxShow fxHide.sm="true" fxFlex="10"> </div>
-        </div>
-    </form>
+<mat-card>
+    <!-- <button (click)="addSubmit()">添加</button> -->
+  <mat-card-content>
+      
+    <mat-tab-group>
+       
+      <mat-tab label="用户">
+        <input type='text' style='padding:5px;width:15%;position:absolute;right: 0px;top: 5px;' placeholder='搜索' (keyup)='commonComponent.updateFilter($event,temp,this)'
+        />
+        <button   (click)="beforeaddSubmit()" mat-button color="primary">添加</button>
+        <!-- <button style='padding:5px;width:7%;position:absolute;top: 8px;'  (click)="addSubmit()">修改</button> -->
+        <div style="margin-top:1%">
+          <ngx-datatable #mydatatable class="material" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'"
+            [rows]="rows">
+            <ngx-datatable-column name="用户名" prop="name">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="类型" prop="type">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="描述" prop="description">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="操作" prop="operation">
+              <ng-template ngx-datatable-cell-template let-value="value" let-rowIndex="rowIndex" let-row="row">
+                <button (click)="EditUser(row)" mat-button color="primary">编辑</button>
+                <button (click)="DeleteUser(rowIndex)" mat-button color="primary">删除</button>
 
-    <ngx-datatable #table class="material" [headerHeight]="50" [limit]="10" [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'"
-        [rows]="rows">
-        <ngx-datatable-column name="name">
-            <ng-template let-column="column" ngx-datatable-header-template>
-                姓名
-            </ng-template>
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                <span title="双击编辑" (dblclick)="editing[rowIndex + '-name'] = true" *ngIf="!editing[rowIndex + '-name']">
-                    {{value}}
-                </span>
-                <input autofocus (blur)="updateValue($event, 'name', rowIndex)" *ngIf="editing[rowIndex+ '-name']" type="text" [value]="value"
-                />
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="username">
-            <ng-template let-column="column" ngx-datatable-header-template>
-                用户名
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="email">
-            <ng-template let-column="column" ngx-datatable-header-template>
-                邮箱
-            </ng-template>
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                <span title="双击编辑" (dblclick)="editing[rowIndex + '-email'] = true" *ngIf="!editing[rowIndex + '-email']">
-                    {{value}}
-                </span>
-                <input autofocus (blur)="updateValue($event, 'email', rowIndex)" *ngIf="editing[rowIndex+ '-email']" type="text" [value]="value"
-                />
-                <!-- <select *ngIf="editing[rowIndex + '-email']" (change)="updateValue($event, 'email', rowIndex)" [value]="value">
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select> -->
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="projectsname" style="width:500px;">
-            <ng-template let-column="column" ngx-datatable-header-template>
-                所属项目
-            </ng-template>
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
-                <span title="双击编辑" (dblclick)="editing[rowIndex + '-projectsname'] = true" *ngIf="!editing[rowIndex + '-projectsname']">
-                    {{value}}
-                </span>
-                <!-- <select2 *ngIf="editing[rowIndex + '-projectsname']" [data]="projects" [options]="basic_options" (change)="updateValue($event, 'projectsname', rowIndex)"></select2> -->
-                <md-select style="width:100%;height:100%;" *ngIf="editing[rowIndex + '-projectsname']" name="projectsname" multiple=true
-                    (change)="updateValue($event, 'projectsname', rowIndex)" [value]="value">
-                    <md-option *ngFor="let project of projects" [value]="project.text">
-                        {{ project.text }}
-                    </md-option>
-                </md-select>
-                <!-- <select *ngIf="editing[rowIndex + '-projectsname']" multiple="multiple" size="2" (change)="updateValue($event, 'projectsname', rowIndex)"
-          [value]="value">
-          <option *ngFor="let project of projects" value={{project.text}}>{{project.text}}</option>
-        </select> -->
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="date">
-            <ng-template let-column="column" ngx-datatable-header-template>
-                操作时间
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column>
-            <ng-template let-column="column" ngx-datatable-header-template>
-                操作
-            </ng-template>
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex">
-                <a href="javascript:;" title="删除" (click)="delete(rowIndex)">
-                    <md-icon>highlight_off</md-icon>
-                </a>
-            </ng-template>
-        </ngx-datatable-column>
-    </ngx-datatable>
-</div>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </mat-tab>
+      <mat-tab label="在线用户">
+        <div>
+          <ngx-datatable #mydatatable class="material" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'"
+            [rows]="rowsatuo">
+            <ngx-datatable-column name="用户名" prop="username">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="登陆ip地址" prop="ip">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="登陆时间" prop="time">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="在线时间" prop="onlinetime">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="登陆方式" prop="method">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="操作" prop="autooperation">
+              <ng-template ngx-datatable-cell-template let-value="value" let-row='row'>
+                <button (click)="disabledUser(row)" mat-button color="primary">强制下线</button>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>
+
+<ng-template    #membersTemp let-dialogRef="dialogRef" let-ctx="dialogRef.context">
+    <form   [formGroup]="formGroup">
+        <div class="vex-dialog-header">
+            <b>添加用户</b>
+            <i (click)="dialogRef.close(true)" class="vex-close"></i>
+          </div>
+        <dynamic-material-form [group]="formGroup"
+                                [layout]="formLayout"
+                                [model]="formModel">
+        </dynamic-material-form>
+    </form>
+    <div  class="vex-dialog-buttons" style="text-align:center">
+      <button (click)="addmember()" mat-button color="primary">提交</button>
+      <button (click)="dialogRef.close(true)" mat-button>取消</button>
+  </div>
+  </ng-template>
+
+ 

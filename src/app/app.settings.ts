@@ -4,7 +4,7 @@
 export interface IEnvVars {
   ENV: string;
   API_URL: string;
-  AUTH_CONFIG:{
+  AUTH_CONFIG: {
     clientID: string;
     domain: string;
     responseType: string;
@@ -14,14 +14,16 @@ export interface IEnvVars {
 }
 
 export const DefaultAppSetting = {
-  ENV:'',
-  API_URL: "http://127.0.0.1/api_1.0",
-  AUTH_CONFIG:{
-    clientID: 'ngCloud',
+  ENV: '',
+  API_URL: "http://192.168.18.89:4233/api/v1",
+  // API_URL: "http://127.0.0.1/api/v1",
+  AUTH_CONFIG: {
+    clientID: 'test',
     domain: '127.0.0.1',
     responseType: 'json',
-    apiUrl: 'http://127.0.0.1/api_1.0/login',
-    redirectUri: ''
+    apiUrl: 'http://192.168.18.89:4233/auth/token-auth',
+    // apiUrl: 'http://127.0.0.1/api/v1/login',
+    redirectUri: 'http://192.168.18.89:4233/auth/token-refresh'
   }
 }
 export class AppSettings {

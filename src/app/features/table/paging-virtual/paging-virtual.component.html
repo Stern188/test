@@ -1,0 +1,24 @@
+<div>
+    <h3>
+      Virtual Server-side Paging
+      <small>
+        <a href="https://github.com/swimlane/ngx-datatable/blob/master/demo/paging/paging-virtual.component.ts" target="_blank">
+          Source
+        </a>
+      </small>
+    </h3>
+    <ngx-datatable
+      class="material"
+      [rows]="rows"
+      [columns]="[{name:'Name'},{name:'Gender'},{name:'Company'}]"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [scrollbarV]="true"
+      [footerHeight]="50"
+      [rowHeight]="50"
+      [externalPaging]="true"
+      [count]="page.totalElements"
+      [offset]="page.pageNumber"
+      (page)='setPage($event)'>
+    </ngx-datatable>
+  </div>

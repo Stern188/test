@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "ng-test"
+    "name": "ng-cloud"
   },
   "apps": [
     {
@@ -26,13 +26,11 @@
         "../node_modules/bootstrap-material-design/dist/css/ripples.min.css",
         "../node_modules/vex-js/dist/css/vex.css",
         "../node_modules/vex-js/dist/css/vex-theme-default.css",
-        "styles.scss",
-        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/vex-js/dist/css/vex-theme-top.css",
+        "../node_modules/vex-js/dist/css/vex-theme-flat-attack.css",
         "../src/assets/plugins/powerfloat/powerFloat.css",
         "../src/assets/plugins/powerfloat/common.css",
-        "../src/assets/plugins/laydate/laydate.css",
-        "../src/assets/plugins/tawdate/need/tawdate.css",
-        "../src/assets/plugins/tawdate/skins/molv/tawdate.css"
+        "styles.scss"
       ],
       "stylePreprocessorOptions": {
         "includePaths": [
@@ -49,10 +47,7 @@
         "../node_modules/echarts/dist/echarts.min.js",
         "../node_modules/select2/dist/js/select2.js",
         "../node_modules/nouislider/distribute/nouislider.js",
-        "../src/assets/plugins/powerfloat/jquery-powerFloat.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.js",
-        "../src/assets/plugins/laydate/laydate.js",
-        "../src/assets/plugins/tawdate/tawdate.js"
+        "../src/assets/plugins/powerfloat/jquery-powerFloat.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

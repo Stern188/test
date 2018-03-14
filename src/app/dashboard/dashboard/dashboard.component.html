@@ -1,26 +1,73 @@
+<!-- <div class="row">
+    <div class="col-md-6">
+      <p><button class="btn btn-outline-primary" (click)="getWidth()">getWidth()</button></p>
+      <p><button class="btn btn-outline-primary" (click)="getHeight()">getHeight()</button></p>
+      <p><button class="btn btn-outline-primary" (click)="getDom()">getDom()</button></p>
+      <p><button class="btn btn-outline-primary" (click)="getOption()">getOption()</button></p>
+      <p><button class="btn btn-outline-danger" (click)="clear()">clear()</button></p>
+    </div>
+    <div class="col-md-6">
+      <div echarts [options]="options" (chartInit)="onChartInit($event)" class="demo-chart"></div>
+    </div>
+  </div> -->
 <app-pagebar>
   <div app-pagebar-toolbar>
-    <md-select placeholder="Scene" [(ngModel)]="selectedSceneID">
-      <md-option *ngFor="let scene of scenes | async" [value]="scene.id">{{ scene.name }}</md-option>
-    </md-select>
+    <mat-form-field>
+      <mat-select placeholder="Scene" [(ngModel)]="selectedSceneID">
+        <mat-option *ngFor="let scene of scenes | async" [value]="scene.id">{{ scene.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 </app-pagebar>
 
 
 <gridster [options]="options" *ngIf="scene">
-  <gridster-item [item]="item.view" *ngFor="let item of (scene|async)?.dashboard ">
-      <label class="item-label">{{item.label}}</label>
-      <div class="item-buttons">
-        <button md-icon-button md-raised-button class="drag-handler">
-          <md-icon>open_with</md-icon>
-        </button>
-        <button md-icon-button md-raised-button class="remove-button" (click)="removeItem($event, item)"
-                (touchstart)="removeItem($event, item)" mdTooltip="Remove">
-          <md-icon>clear</md-icon>
-        </button>
+  <gridster-item [item]="item.view" *ngFor="let item of (scene|async)?.dashboard; let i =index">
+    <label class="item-label">{{item.label}}</label>
+    <div class="item-buttons">
+      <button mat-icon-button md-raised-button class="drag-handler">
+        <mat-icon>open_with</mat-icon>
+      </button>
+      <button mat-icon-button md-raised-button class="remove-button" (click)="removeItem($event, item)" (touchstart)="removeItem($event, item)"
+        mdTooltip="Remove">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+    <div [ngSwitch]="i">
+      <div *ngSwitchCase="'0'" class="gridster-item-content-dd">
+        <div echarts [options]="echartsOption" class="demo-chart" style="height: 140px;width: 314px;padding:20px;"></div>
       </div>
-      <div class="gridster-item-content-dd" >
-          <div>item content</div>
+      <div *ngSwitchCase="'1'" class="gridster-item-content-dd">
+        <div echarts [options]="echartsOption" class="demo-chart" (chartInit)="onChartInit($event)" style="height: 310px;width: 314px;padding:20px;"
+          id="demo1"></div>
       </div>
+      <div *ngSwitchCase="'2'" class="gridster-item-content-dd">
+        item content {{i}}
+      </div>
+      <div *ngSwitchCase="'3'" class="gridster-item-content-dd">
+        item content {{i}}
+      </div>
+      <div *ngSwitchCase="'4'" class="gridster-item-content-dd">
+        item content {{i}}
+      </div>
+      <div *ngSwitchCase="'5'" class="gridster-item-content-dd">
+        item content {{i}}
+      </div>
+      <div *ngSwitchCase="'6'" class="gridster-item-content-dd">
+        item content {{i}}
+      </div>
+      <div *ngSwitchCase="'7'" class="gridster-item-content-dd">
+        item content {{i}}
+      </div>
+      <div *ngSwitchCase="'8'" class="gridster-item-content-dd">
+        item content {{i}}
+      </div>
+      <div *ngSwitchCase="'9'" class="gridster-item-content-dd">
+        item content {{i}}
+      </div>
+      <div *ngSwitchCase="'10'" class="gridster-item-content-dd">
+        item content {{i}}
+      </div>
+    </div>
   </gridster-item>
 </gridster>

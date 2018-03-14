@@ -288,7 +288,11 @@ Page Header
     @include burger-icon-color-change($header-toggler-color, $header-toggler-color);
   }
 }
-
+.page-header{
+  border-bottom: 1px solid #ccc;
+  padding: unset;
+  margin: unset;
+}
 /* Default Horizontal Menu */
 
 .page-header.navbar {
@@ -1160,7 +1164,7 @@ Boby
 ****/
 
 body {
-  background-color: $bg-color!important;
+  background-color: $bg-color;
 }
 
 /****

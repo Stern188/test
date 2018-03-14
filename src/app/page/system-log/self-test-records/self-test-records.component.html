@@ -1,0 +1,85 @@
+<app-pagebar></app-pagebar>
+<div fxLayout="row">
+  <div fxFlex="30">
+    <button (click)="befAddRole()" mat-button color="primary" style="min-width:10px">添加</button>
+  </div>
+  <div fxFlex="70">
+    <input type='text' placeholder='搜索表格内容' class="pull-right" (keyup)='commonComponent.updateFilter($event,newRows,this)' />
+  </div>
+</div>
+<div>
+  <ngx-datatable class="material" [messages]="commonComponent.messages" [headerHeight]="50" [limit]="10" [columnMode]="'force'"
+    [footerHeight]="50" [rowHeight]="'auto'" [rows]="rows">
+    <ngx-datatable-column name="角色名称" prop="name">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="描述" prop="description">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="操作" prop="operation">
+      <ng-template ngx-datatable-cell-template let-value="value" let-rowIndex="rowIndex" let-row="row">
+        <button (click)="roleDet(row)" mat-button color="primary" style="min-width:10px">详情</button>
+        <button (click)="befEditRole(row)" mat-button color="primary" style="min-width:10px">编辑</button>
+        <button (click)="delRole(rowIndex)" mat-button color="primary" style="min-width:10px">删除</button>
+      </ng-template>
+    </ngx-datatable-column>
+    <!-- <ngx-datatable-footer>
+      <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize" let-selectedCount="selectedCount"
+        let-curPage="curPage" let-offset="offset">
+        <div style="padding: 5px 10px">
+          总条数为 {{rowCount}} 条(显示 {{curPage==1||(curPage*10+1)}} 到 {{pageSize}} ) Rows: {{rowCount}} | Size: {{pageSize}} | Current:
+          {{curPage}} | Offset: {{offset}}
+        </div>
+      </ng-template>
+    </ngx-datatable-footer> -->
+  </ngx-datatable>
+</div>
+<ng-template #roleTemp let-dialogRef="dialogRef" let-ctx="dialogRef.context">
+  <div>
+    <div class="vex-dialog-header">
+      <b>{{addOrUpldRoleTitle}}角色</b>
+      <i (click)="dialogRef.close(true)" class="vex-close"></i>
+    </div>
+    <div class="vex-dialog-content">
+      <form [formGroup]="roleGroup">
+        <dynamic-material-form (matEvent)="onMatEvent($event)" #roleForm [group]="roleGroup" [layout]="formLayout" [ngClass]="isHide"
+          [model]="roleModel">
+        </dynamic-material-form>
+      </form>
+      <mat-tab-group>
+        <mat-tab label="功能模块">
+          <form [formGroup]="isSelectGroup">
+            <dynamic-material-form (dfChange)="isSelectChg($event)" [ngClass]="isHide" [group]="isSelectGroup" [layout]="formLayout"
+              [model]="isSelectModel"></dynamic-material-form>
+          </form>
+          <ngx-datatable id="privilegeTbl" class="material" [messages]="commonComponent.messages" [headerHeight]="50" [columnMode]="'force'"
+            [footerHeight]="false" [rowHeight]="'auto'" [rows]="priRows">
+            <ngx-datatable-column name="功能模块名" prop="module_name">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [sortable]="false" name="只读" prop="module_id">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                <input type="checkbox" value="r" [attr.priId]="value" [disabled]="isChkDisabled" (change)="chgRdo('rw',value)">
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [sortable]="false" name="读写" prop="module_id">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                <input type="checkbox" value="rw" [attr.priId]="value" [disabled]="isChkDisabled" (change)="chgRdo('r',value)">
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    <div class="vex-dialog-footer" *ngIf="isFooter">
+      <button (click)="addOrUplRole()" mat-button color="primary" [disabled]="!roleGroup.valid">提交</button>
+      <button (click)="dialogRef.close(true)" mat-button>取消</button>
+    </div>
+  </div>
+</ng-template>

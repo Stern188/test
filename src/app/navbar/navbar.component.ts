@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit {
   }
 
   open_menu(id:string){
+    // console.log('open'+id);
     /*let menu = this.elRef.nativeElement.querySelector('#'+id);
     menu.classList.add('open');*/
     this.navbar.open(id);

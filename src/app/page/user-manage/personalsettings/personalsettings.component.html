@@ -1,1 +1,10 @@
-<div>shasha</div>
+<form   [formGroup]="formGroup">
+       
+        <dynamic-material-form [group]="formGroup"
+                                [layout]="formLayout"
+                                [model]="formModel">
+        </dynamic-material-form>
+</form>
+<div  class="vex-dialog-buttons" >
+        <button (click)="addmember()" color="primary">确认</button>
+</div>

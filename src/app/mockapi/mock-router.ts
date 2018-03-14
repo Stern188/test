@@ -5,11 +5,14 @@
 import { BaseMockApi } from "./mock-api";
 import { authApi } from "./auth-api.mock";
 import { dashboardApi } from "./dashboard-api.mock";
-import { projectsApi } from "./projects-api.mock";
-import { membersApi } from "./members-api.mock";
-import { versionsApi } from "./versions-api.mock";
-import { indexApi } from "./index-api.mock";
 import { statisticsApi } from "./statistics-api.mock";
+import { ipobjApi } from "./ipobj-api.mock";
+import { rolesApi } from "./user-manage/role-manage.mock";
+import { rolesPriApi } from "./user-manage/role-privilege.mock";
+import { indexApi } from "./index.mock";
+import { projectsApi } from "./project-manage/projects.mock";
+import { versionsApi } from "./project-manage/versions.mock";
+import { modulesApi } from "./project-manage/modules.mock";
 
 
 interface MockRouters {
@@ -24,10 +27,13 @@ export const mockRouters: MockRouters = {
   'routers': [
     authApi,
     dashboardApi,
-    projectsApi,
-    membersApi,
-    versionsApi,
+    statisticsApi,
+    ipobjApi,
+    rolesApi,
+    rolesPriApi,
     indexApi,
-    statisticsApi
+    projectsApi,
+    versionsApi,
+    modulesApi
   ]
 };

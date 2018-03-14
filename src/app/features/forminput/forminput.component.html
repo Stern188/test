@@ -1,0 +1,166 @@
+
+<app-pagebar>
+  <div app-pagebar-toolbar>
+   <div id="dashboard-report-range" class="pull-right tooltips btn btn-sm" data-container="body" data-placement="bottom" data-original-title="Change dashboard date range">
+     <i class="icon-calendar"></i>&nbsp;
+     <span class="thin uppercase hidden-xs">June 19, 2017 - July 18, 2017</span>&nbsp;
+     <i class="fa fa-angle-down"></i>
+   </div>
+  </div>
+</app-pagebar>
+<app-pagetitle [title]="'Form Input'"></app-pagetitle>
+
+    <markdown>
+      Input组件使用 [@angular/material2](https://material.angular.io/components/input/overview)的input组件.
+    </markdown>
+
+<mat-card class="card-demo" >
+  <mat-card-title>Input组件示例</mat-card-title>
+  <mat-card-subtitle>展示基本的组件功能</mat-card-subtitle>
+  <mat-card-content>
+    <div class="containerX">
+      <div fxLayout="row"  class="coloredContainerX box" >
+        <div fxShow fxHide.sm="true" fxFlex="10"> </div>
+        <div fxFlex.gt-sm="100" fxFlex="80">
+          <mat-form-field class="example-full-width">
+            <input matInput  placeholder="Company (disabled)" disabled value="Topsec">
+          </mat-form-field>
+        </div>
+        <div fxShow fxHide.sm="true" fxFlex="10"> </div>
+      </div>
+
+      <div fxLayout="row"  >
+        <div fxShow fxHide.sm="true" fxFlex="10"> </div>
+        <div fxFlex.gt-sm="100" fxFlex="80">
+          <div fxLayout="row" fxLayoutGap="10px" >
+            <mat-form-field class="example-full-width">
+              <input matInput  placeholder="First name">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput  placeholder="Long Last Name That Will Be Truncated">
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxShow fxHide.sm="true" fxFlex="10"> </div>
+      </div>
+
+      <div fxLayout="row"  >
+        <div fxShow fxHide.sm="true" fxFlex="10"> </div>
+        <div fxFlex.gt-sm="100" fxFlex="80">
+          <mat-form-field class="example-full-width">
+            <textarea matInput  placeholder="Address">1600 Amphitheatre Pkwy</textarea>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <textarea matInput  placeholder="Address 2"></textarea>
+          </mat-form-field>
+        </div>
+        <div fxShow fxHide.sm="true" fxFlex="10"> </div>
+      </div>
+
+    </div>
+
+    <div fxLayout="row"  >
+      <div fxShow fxHide.sm="true" fxFlex="10"> </div>
+      <div fxFlex.gt-sm="100" fxFlex="80">
+        <div fxLayout="row">
+          <mat-form-field class="example-full-width">
+            <input matInput  placeholder="City">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput  placeholder="State">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput  #postalCode maxlength="5" placeholder="Postal Code" value="94043">
+            <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxShow fxHide.sm="true" fxFlex="10"> </div>
+
+    </div>
+
+
+  </mat-card-content>
+  <mat-card-footer>
+  </mat-card-footer>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>Input组件示例代码</mat-card-title>
+  <mat-card-subtitle>展示基本的组件功能</mat-card-subtitle>
+  <mat-card-content>
+    <pre>
+  <code appPcode class="language-markup">
+&lt;mat-form-field&gt;
+  &lt;input matInput  placeholder=&quot;City&quot;&gt;
+&lt;/mat-form-field&gt; </code>
+    </pre>
+  </mat-card-content>
+
+</mat-card>
+
+
+<mat-card>
+  <mat-card-title>Input组件变量绑定</mat-card-title>
+  <mat-card-subtitle>展示基本的组件绑定功能</mat-card-subtitle>
+  <mat-card-content>
+    <mat-tab-group>
+      <mat-tab label="效果">
+             <mat-form-field>
+              <input matInput  placeholder="TestInputBind"  [(ngModel)]="bind1.val">
+            </mat-form-field>
+            <p>
+            bind1.val当前值{{bind1.val}}
+            </p>
+            <button md-raised-button  (click)="showBind1()">测试输入</button>
+      </mat-tab>
+      <mat-tab label="源码">
+        <mat-tab-group>
+          <mat-tab label="HTML">
+            <div ngNonBindable>
+            <pre><code appPcode >
+&lt;mat-form-field&gt;
+  &lt;input matInput  placeholder=&quot;TestInputBind&quot;  [(ngModel)]=&quot;bind1.val&quot;&gt;
+&lt;/mat-form-field&gt;
+&lt;p&gt;
+&lt;!-- 利用绑定动态显示结果 --&gt;
+bind1.val当前值 {{bind1.val}}
+&lt;/p&gt;
+&lt;button md-raised-button  (click)=&quot;doMyAction()&quot;&gt;测试输入&lt;/button&gt;
+            </code></pre>
+            </div>
+          </mat-tab>
+          <mat-tab label="TS">
+           <div style="display: none;">{{'</div>
+          <pre><code appPcode class="language-typescript">
+...
+//定义一个数据类
+class Bind1 {
+  val:string;
+};
+export class YourComponent {
+  //定义一个属性bind1,类型是Bind1,也可以是string等类型
+  public bind1:Bind1;
+  constructor() {
+    //初始化bind1
+    this.bind1 = new Bind1();
+    //赋初值,如果没有初值，input会只显示placeholder的内容
+    this.bind1.val ="before input";
+  }
+
+  public  doMyAction()
+  {
+      // 使用用户输入后的值
+      // this.bind1.val,
+  }
+
+}
+          </code></pre> <div style="display: none;"> '}} </div>
+          </mat-tab>
+
+        </mat-tab-group>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+
+</mat-card>

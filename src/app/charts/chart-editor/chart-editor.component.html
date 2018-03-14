@@ -1,0 +1,52 @@
+<div fxLayout="row">
+  chart-editor
+</div>
+<div fxLayout="row">
+  <div fxFlex="80px">
+    <ul  class="nav nav-pills nav-stacked" style="width:80px;">
+        <ng-container *ngFor="let item of config|items">
+          <li [class.active]="item.key === level0">
+            <a href="javascript:void(0);" (click)="checkLevel0(item.key)">
+              {{item.key}}
+            </a>
+          </li>
+        </ng-container>
+
+    </ul>
+  </div>
+  <div fxFlex="80px">
+    <ul class="nav nav-pills nav-stacked" style="width:80px;">
+      <ng-container *ngFor="let item of config[level0]|items">
+        <li [class.active]="item.key === level1" *ngIf="item.key !=='series'">
+          <a href="javascript:void(0);" (click)="checkLevel1(item.key)">
+            {{item.key}}
+          </a>
+        </li>
+        <ng-container *ngIf="item.key === 'series'">
+          <li [class.active]="item.key === 'serie.'+idx" *ngFor="let idx of item.value" >
+            <a href="javascript:void(0);" (click)="checkLevel1('serie.'+idx)">
+              {{'serie:'+idx}}
+            </a>
+          </li>
+        </ng-container>
+      </ng-container>
+    </ul>
+  </div>
+  <div class="editor-container">
+    <form class="form-horizontal" [formGroup]="formGroup">
+
+      <dynamic-bootstrap-form [group]="formGroup"
+                                      [model]="formModel"
+                                      [labelCheck]="true"
+                                      [formHorizontal]="true"
+                                      (change)="onChange($event)" >
+
+
+      </dynamic-bootstrap-form>
+
+    </form>
+
+
+    {{ form_config|json }}
+  </div>
+</div>

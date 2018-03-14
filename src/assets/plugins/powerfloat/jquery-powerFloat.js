@@ -717,7 +717,7 @@
 			this.target.css({
 				position: "absolute",
 				left: tar_l,
-				top: tar_t - 50,
+				top: tar_t,
 				zIndex: this.s.zIndex
 			});
 			return this;
